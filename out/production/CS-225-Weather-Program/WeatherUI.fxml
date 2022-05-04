@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.FlowPane?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneController">
-   <top>
-      <Button fx:id="pressButton" mnemonicParsing="false" onAction="#helloWorld" text="Press Me" BorderPane.alignment="CENTER" />
-   </top>
-   <left>
+   <bottom>
       <Button fx:id="screen1Button" mnemonicParsing="false" onAction="#setScreen1" text="Screen1" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <Button fx:id="pressButton" mnemonicParsing="false" onAction="#helloWorld" text="Press Me" BorderPane.alignment="CENTER" />
    </left>
-   <right>
+   <top>
       <Button fx:id="screen2Button" mnemonicParsing="false" onAction="#setScreen2" text="Screen2" BorderPane.alignment="CENTER" />
-   </right>
+   </top>
    <center>
-      <FlowPane fx:id="mainScreen" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <FlowPane fx:id="mainScreen" maxHeight="350.0" maxWidth="169.0" prefHeight="350.0" prefWidth="169.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
