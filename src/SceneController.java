@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 
@@ -28,7 +29,7 @@ public class SceneController implements Initializable{
     Button screen2Button;
 
     @FXML
-    FlowPane mainScreen;
+    Pane mainScreen;
 
   
     @Override
@@ -44,12 +45,19 @@ public class SceneController implements Initializable{
 
     public void setScreen1(){
         FxmlLoader sceneLoader = new FxmlLoader();
-        Pane view = sceneLoader.getPage("Screen1");
-        mainScreen = (FlowPane) view;
+        Node node;
+        node = (Node) sceneLoader.getPage("Screen1.fxml");
+        mainScreen.getChildren().setAll(node);
+
+        //mainScreen = sceneLoader.getPage("Screen1");
+
     }
 
     public void setScreen2(){
-
+        FxmlLoader sceneLoader = new FxmlLoader();
+        Node node;
+        node = (Node) sceneLoader.getPage("Screen2.fxml");
+        mainScreen.getChildren().setAll(node);
     }
     
 }
