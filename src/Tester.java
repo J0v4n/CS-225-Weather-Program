@@ -16,7 +16,7 @@ public class Tester extends Application {
  	@Override
 	public void start(Stage stage) {
 		try {
-		Parent root = FXMLLoader.load(getClass().getResource("WeatherUI.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("OuterUI.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);
