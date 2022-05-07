@@ -9,32 +9,9 @@ public class Storage {
 	 * Arjun's part
 	 */
 	
-	//ALL STRINGS NEED TO BE CHANGED TO BE OF REPORT TYPE
-	
-	private List<String> dailyList = new ArrayList<String>();
-	private List<String> monthlyList = new ArrayList<String>();
-	
-	/***
-	 * Testing Constructor
-	 */
-	public Storage() {
-		//Dummy list to test
-		char aC= 't';
-		for(int i = 0; i < 12; i++) {
-			this.dailyList.add(Character.toString(aC));
-			aC--;
-		}
-		this.dailyList.add("F");
-		this.dailyList.add("A");
-	}
-	
-	//Getters
-	public List<String> getDailyList(){
-		return Collections.unmodifiableList(this.dailyList);
-	}
-	
-	public List<String> getMonthlyList(){
-		return Collections.unmodifiableList(this.monthlyList);
+	public void initialSortByDate() {
+		sortByDate(true);
+		sortByDate(false);
 	}
 			
 	/**
@@ -58,12 +35,12 @@ public class Storage {
 		if(isDailyList) {
 			//Switching whatever is in pivotIdx with last element
 			//to consider our pivot as new last element.
-			String temp = this.dailyList.get(pivotIdx);
+			DailyReport temp = this.dailyList.get(pivotIdx);
 			this.dailyList.set(pivotIdx, this.dailyList.get(highIdx));
 			this.dailyList.set(highIdx, temp);
 		}
 		else {
-			String temp = this.monthlyList.get(pivotIdx);
+			MonthlyReport temp = this.monthlyList.get(pivotIdx);
 			this.monthlyList.set(pivotIdx, this.monthlyList.get(highIdx));
 			this.monthlyList.set(highIdx, temp); 
 		}
@@ -83,29 +60,65 @@ public class Storage {
 	/**
 	 * @author: Carlos Rodriguez
 	 * 
+	 * @param isDailyList: boolean to define if the list
+	 * referred to is the daily list if true, the monthly
+	 * list if false.
+	 */
+	public void sortByDate(boolean isDailyList) {
+		sortDate(0, this.dailyList.size()-1, isDailyList);
+	}
+	
+	/**
+	 * @author: Carlos Rodriguez
+	 * 
 	 * Helper method takes care of partitioning either the
 	 * monthly list or the daily list. Invokes partitioning
-	 * based on station.
+	 * based on station recursively.
+	 *   
 	 * 
-	 * @param lowIdx
-	 * @param highIdx
-	 * @param isDailyList
+	 * @param lowIdx: lowest index to start partition.
+	 * @param highIdx: highest index to partition at.
+	 * @param isDailyList: boolean to define if the list
+	 * referred to is the daily list if true, the monthly
+	 * list if false.
 	 */
 	private void sortStation(int lowIdx, int highIdx, boolean isDailyList) {
-		if(isDailyList) {
-			if(lowIdx < highIdx) {
-				int partitionIdx = partitionByStation(lowIdx, highIdx, isDailyList);
-				sortStation(lowIdx, partitionIdx-1, isDailyList);
-				sortStation(partitionIdx+1, highIdx, isDailyList);
-			}
+		if(lowIdx < highIdx) {
+			int partitionIdx = partitionByStation(lowIdx, highIdx, isDailyList);
+			sortStation(lowIdx, partitionIdx-1, isDailyList);
+			sortStation(partitionIdx+1, highIdx, isDailyList);
 		}
 	}
 	
 	/**
 	 * @author: Carlos Rodriguez
 	 * 
-	 * Evaluates the first char of a Report's station name,
-	 * and sorts all the reports in a list.
+	 * Helper method takes care of partitioning either the
+	 * monthly list or the daily list. Invokes partitioning
+	 * based on date recursively.
+	 *   
+	 * 
+	 * @param lowIdx: lowest index to start partition.
+	 * @param highIdx: highest index to partition at.
+	 * @param isDailyList: boolean to define if the list
+	 * referred to is the daily list if true, the monthly
+	 * list if false.
+	 */
+	private void sortDate(int lowIdx, int highIdx, boolean isDailyList) {
+		if(lowIdx < highIdx) {
+			int partitionIdx = partitionByDate(lowIdx, highIdx, isDailyList);
+			sortDate(lowIdx, partitionIdx-1, isDailyList);
+			sortDate(partitionIdx+1, highIdx, isDailyList);
+		}
+	}
+	
+	/**
+	 * @author: Carlos Rodriguez
+	 * 
+	 * Evaluates the first char of a Report's station name
+	 * as pivot, and sorts all the reports in a list based
+	 * on partitions (from lowest index entered to highest)
+	 * comparing the values with the chosen pivot.
 	 * 
 	 * @param lowIdx: lowest index to start the partition.
 	 * @param highIdx: highest index to start the partition.
@@ -117,25 +130,127 @@ public class Storage {
 		randomPivot(lowIdx, highIdx, isDailyList);
 		int pivot = -1;
 		int i = -1;
+		
+		//DailyList Case:
 		if(isDailyList) {
-			pivot = this.dailyList.get(highIdx).charAt(0);
+			pivot = this.dailyList.get(highIdx).getStationName().charAt(0);
 			i = lowIdx - 1;
 			
 			for(int j=lowIdx; j < highIdx; j++) {
-				if(this.dailyList.get(j).charAt(0) < pivot) {
+				if(this.dailyList.get(j).getStationName().charAt(0) < pivot) {
 					i++;
-					String temp = this.dailyList.get(i);
+					DailyReport temp = this.dailyList.get(i);
 					this.dailyList.set(i, this.dailyList.get(j));
 					this.dailyList.set(j, temp);
 				}
 			}
 			
-			String temp = this.dailyList.get(i + 1);
+			DailyReport temp = this.dailyList.get(i + 1);
 			this.dailyList.set(i + 1, this.dailyList.get(highIdx));
 			this.dailyList.set(highIdx, temp);
+		}
+		//MonthlyList Case
+		else{
+			pivot = this.monthlyList.get(highIdx).getStationName().charAt(0);
+			i = lowIdx - 1;
+			
+			for(int j=lowIdx; j < highIdx; j++) {
+				if(this.monthlyList.get(j).getStationName().charAt(0) < pivot) {
+					i++;
+					MonthlyReport temp = this.monthlyList.get(i);
+					this.monthlyList.set(i, this.monthlyList.get(j));
+					this.monthlyList.set(j, temp);
+				}
+			}
+			
+			MonthlyReport temp = this.monthlyList.get(i + 1);
+			this.monthlyList.set(i + 1, this.monthlyList.get(highIdx));
+			this.monthlyList.set(highIdx, temp);
 		}
 		return i + 1;
 	}
 	
+	/**
+	 * @author: Carlos Rodriguez
+	 * 
+	 * Evaluates the date of a Report as pivot, sorts all 
+	 * the reports in a list basedon partitions (from 
+	 * lowest index entered to highest) comparing the values 
+	 * (year, month, day order) with the chosen pivot.
+	 * 
+	 * @param lowIdx: lowest index to start the partition.
+	 * @param highIdx: highest index to start the partition.
+	 * @param isDailyList: to sort the dailyList if true,
+	 * monthlyList if false.
+	 * @return: Highest index reached by the partition.
+	 */
+	private int partitionByDate(int lowIdx, int highIdx, boolean isDailyList) {
+		randomPivot(lowIdx, highIdx, isDailyList);
+		int[] pivot = new int[3];
+		int i = -1;
+		
+		//DailyList Case:
+		if(isDailyList) {
+			String foundDate[] = this.dailyList.get(highIdx).getData().split("/");
+			for(int k=0; i<3; k++) {
+				pivot[k]=Integer.parseInt(foundDate[k]);
+			}
+			i = lowIdx - 1;
+			
+			for(int j=lowIdx; j < highIdx; j++) {
+				foundDate = this.dailyList.get(highIdx).getData().split("/");
+				int[] currDate = new int[3];
+				for(int k=0; i<3; k++) {
+					currDate[k]=Integer.parseInt(foundDate[k]);
+				}
+				//Evaluating based on year (descending year)
+				if(currDate[2] > pivot[2]) {
+					//Evaluating based on month (ascending month)
+					if(currDate[0] < pivot[0]) 
+						//Evaluating based on day (ascending day)
+						if(currDate[1] < pivot[1])
+							i++;
+							DailyReport temp = this.dailyList.get(i);
+							this.dailyList.set(i, this.dailyList.get(j));
+							this.dailyList.set(j, temp);
+				}
+			}
+			
+			DailyReport temp = this.dailyList.get(i + 1);
+			this.dailyList.set(i + 1, this.dailyList.get(highIdx));
+			this.dailyList.set(highIdx, temp);
+		}
+		
+		//MonthlyList Case
+		else{
+			String foundDate[] = this.monthlyList.get(highIdx).getData().split("/");
+			for(int k=0; i<3; k++) {
+				pivot[k]=Integer.parseInt(foundDate[k]);
+			}
+			i = lowIdx - 1;
+			
+			for(int j=lowIdx; j < highIdx; j++) {
+				foundDate = this.monthlyList.get(highIdx).getData().split("/");
+				int[] currDate = new int[3];
+				for(int k=0; i<3; k++) {
+					currDate[k]=Integer.parseInt(foundDate[k]);
+				}
+				//Evaluating based on year
+				if(currDate[2] < pivot[2]) {
+					//Evaluating based on month
+					if(currDate[0] < pivot[0]) 
+						//Evaluating based on day
+						if(currDate[1] < pivot[1])
+							i++;
+							MonthlyReport temp = this.monthlyList.get(i);
+							this.monthlyList.set(i, this.monthlyList.get(j));
+							this.monthlyList.set(j, temp);
+				}
+			}	
+			MonthlyReport temp = this.monthlyList.get(i + 1);
+			this.monthlyList.set(i + 1, this.monthlyList.get(highIdx));
+			this.monthlyList.set(highIdx, temp);
+		}
+		return i + 1;
+	}
 }
-
