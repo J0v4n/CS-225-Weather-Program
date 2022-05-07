@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #434343;" stylesheets="@css/map-styles.css" xmlns="http://javafx.com/javafx/8.0.321" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="mapContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #434343;" stylesheets="@css/map-styles.css" xmlns="http://javafx.com/javafx/8.0.321" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapController">
    <children>
       <ImageView disable="true" fitHeight="493.0" fitWidth="600.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -17,28 +17,28 @@
             <Rectangle2D minX="300.0" minY="300.0" width="1.0" />
          </viewport>
       </ImageView>
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="289.0" layoutY="132.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="BEDFORD">
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="289.0" layoutY="132.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="BEDFORD">
          <toggleGroup>
             <ToggleGroup fx:id="station" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="391.0" layoutY="115.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="BEVERLY" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="387.0" layoutY="166.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="BLUE HILL" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="380.0" layoutY="142.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" selected="true" styleClass="station-button" text="BOSTON" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="494.0" layoutY="263.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="station-button" text="CHATHAM" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="280.0" layoutY="97.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="FITCHBURG" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="488.0" layoutY="291.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="HYANNIS" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="491.0" layoutY="353.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="station-button" text="NANTUCKET" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="368.0" layoutY="52.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="LAWARENCE" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="392.0" layoutY="264.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="NEW BEDFORD" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="50.0" layoutY="75.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="NORTH ADAMS" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="377.0" layoutY="188.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="NORWOOD" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="196.0" layoutY="86.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="ORANGE" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="37.0" layoutY="132.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="PITTSFIELD" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="432.0" layoutY="214.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="PLYMOUTH" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="386.0" layoutY="235.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="TAUNTON" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="467.0" layoutY="331.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="VINEYARD" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="129.0" layoutY="188.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="WESTFIELD" toggleGroup="$station" />
-      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="258.0" layoutY="174.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" styleClass="station-button" text="WORCESTER" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="391.0" layoutY="115.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="BEVERLY" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="387.0" layoutY="166.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="BLUE HILL" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="380.0" layoutY="142.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" selected="true" styleClass="station-button" text="BOSTON" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="494.0" layoutY="263.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#stationSelected" styleClass="station-button" text="CHATHAM" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="280.0" layoutY="97.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="FITCHBURG" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="488.0" layoutY="291.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="HYANNIS" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="491.0" layoutY="353.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#stationSelected" styleClass="station-button" text="NANTUCKET" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="368.0" layoutY="52.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="LAWARENCE" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="392.0" layoutY="264.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="NEW BEDFORD" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="50.0" layoutY="75.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="NORTH ADAMS" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="377.0" layoutY="188.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="NORWOOD" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="196.0" layoutY="86.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="ORANGE" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="37.0" layoutY="132.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="PITTSFIELD" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="432.0" layoutY="214.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="PLYMOUTH" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="386.0" layoutY="235.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="TAUNTON" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="467.0" layoutY="331.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="VINEYARD" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="129.0" layoutY="188.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="WESTFIELD" toggleGroup="$station" />
+      <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="258.0" layoutY="174.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="WORCESTER" toggleGroup="$station" />
    </children>
 </AnchorPane>
