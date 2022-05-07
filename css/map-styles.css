@@ -1,0 +1,15 @@
+.station-button {
+    
+    -fx-padding: 2px 5px 2px 2px;
+    -fx-text-fill: transparent;
+    -fx-background-color: transparent;
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;
+    -fx-background-insets: 1px;
+}
+
+.station-button:selected, .station-button:hover {
+    -fx-text-fill: white;
+    -fx-background-color: rgb(75, 117, 255);
+    -fx-border-width: 2px;
+}
