@@ -16,7 +16,7 @@ public class Tester extends Application {
  	@Override
 	public void start(Stage stage) {
 		try {
-		Parent root = FXMLLoader.load(getClass().getResource("OuterUI.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("front-end/Map.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);
