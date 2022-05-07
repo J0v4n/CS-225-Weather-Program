@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="Weather Data">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/Weather Data.zip!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>
