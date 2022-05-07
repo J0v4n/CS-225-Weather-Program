@@ -4,51 +4,45 @@ import java.util.Objects;
  * @author David Smirnov
  */
 public class DailyReport {
-    private String data;
-    private String stationName;
-    private String stationId;
-    private double AverageWindSpeed;
-    private double MaxWindSpeed;
-    private double DailyPrecipitation;
-    public DailyReport(String info,String sN,String sID,double aWS, double mWS, double dPersipitation){
-        this.data=info;
-        this.stationName=sN;
-        this.stationId=sID;
-        this.AverageWindSpeed=aWS;
-        this.MaxWindSpeed=mWS;
-        this.DailyPrecipitation=dPersipitation;
+    private String date;
+    private String dailyStationName;
+    private double dailyAverageWindSpeed;
+    private double dailyMaxWindSpeed;
+    private double dailyPrecipitation;
+    public DailyReport(String day,String sN,double DailyaWS, double DailymWS, double dPersipitation){
+        this.date=day;
+        this.dailyStationName=sN;
+        this.dailyAverageWindSpeed=DailyaWS;
+        this.dailyMaxWindSpeed=DailymWS;
+        this.dailyPrecipitation=dPersipitation;
     }
     public DailyReport(){
-        data="";
-        stationName="";
-        stationId="";
-        AverageWindSpeed=0;
-        MaxWindSpeed=0;
-        DailyPrecipitation=0;
+        date="";
+        dailyStationName="";
+        dailyAverageWindSpeed=0;
+        dailyMaxWindSpeed=0;
+        dailyPrecipitation=0;
     }
     public String getData(){
-        return data;
+        return date;
     }
-    public String getStationName(){
-        return stationName;
+    public String getDailyStationName(){
+        return dailyStationName;
     }
-    public String getStationId(){
-        return stationId;
-    }
-    private double getAverageWindSpeed(){return AverageWindSpeed;}
-    private double getMaxWindSpeed(){return MaxWindSpeed;}
-    private double getDailyPrecipitation(){return DailyPrecipitation;}
+    private double getDailyAverageWindSpeed(){return dailyAverageWindSpeed;}
+    private double getDailyMaxWindSpeed(){return dailyMaxWindSpeed;}
+    private double getDailyPrecipitation(){return dailyPrecipitation;}
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DailyReport that = (DailyReport) o;
-        return Double.compare(that.AverageWindSpeed, AverageWindSpeed) == 0 && Double.compare(that.MaxWindSpeed, MaxWindSpeed) == 0 && Double.compare(that.DailyPrecipitation, DailyPrecipitation) == 0 && Objects.equals(data, that.data) && Objects.equals(stationName, that.stationName) && Objects.equals(stationId, that.stationId);
+        return Double.compare(that.dailyAverageWindSpeed, dailyAverageWindSpeed) == 0 && Double.compare(that.dailyMaxWindSpeed, dailyMaxWindSpeed) == 0 && Double.compare(that.dailyPrecipitation, dailyPrecipitation) == 0 && Objects.equals(date, that.date) && Objects.equals(dailyStationName, that.dailyStationName);
     }
 
     @Override
     public String toString(){
-        return ""+data+""+""+stationId+""+stationName+""+AverageWindSpeed+""+MaxWindSpeed+""+DailyPrecipitation;
+        return ""+date+""+""+dailyStationName+""+dailyAverageWindSpeed+""+dailyMaxWindSpeed+""+dailyPrecipitation;
     }
 }

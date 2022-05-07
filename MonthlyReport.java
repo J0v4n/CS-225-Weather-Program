@@ -1,54 +1,46 @@
 import java.util.Objects;
 /**
- * @author David
+ * @author David Smirnov
  */
 public class MonthlyReport {
-    private String data;
+    private String date;
     private String stationName;
-    private String stationId;
-    private double avgTemp;
-    private double maxTemp;
-    private double minTemp;
-    private double totalPrecipitation;
-    public MonthlyReport(String info, String sN, String sID,double aTemp,double highTemp,double lowTemp,double tPrecipitation){
-        this.data=info;
+    private double monthlyAvgTemp;
+    private double monthlyMaxTemp;
+    private double monthlyMinTemp;
+    private double monthlyTotalPrecipitation;
+    public MonthlyReport(String day, String sN, double monthlyaTemp,double monthlyhighTemp,double monthlylowTemp,double monthlytPrecipitation){
+        this.date=day;
         this.stationName=sN;
-        this.stationId=sID;
-        this.avgTemp=aTemp;
-        this.maxTemp=highTemp;
-        this.minTemp=lowTemp;
-        this.totalPrecipitation=tPrecipitation;
+        this.monthlyAvgTemp=monthlyaTemp;
+        this.monthlyMaxTemp=monthlyhighTemp;
+        this.monthlyMinTemp=monthlylowTemp;
+        this.monthlyTotalPrecipitation=monthlytPrecipitation;
     }
     public MonthlyReport(){
-        data="";
+        date="";
         stationName="";
-        stationId="";
-        avgTemp=0;
-        maxTemp=0;
-        minTemp=0;
-        totalPrecipitation=0;
+        monthlyAvgTemp=0;
+        monthlyMaxTemp=0;
+        monthlyMinTemp=0;
+        monthlyTotalPrecipitation=0;
 
     }
-    public String getData(){
-        return data;
-    }
+    public String getDate(){return date; }
     public String getStationName(){
         return stationName;
     }
-    public String getStationId(){
-        return stationId;
+    public double getmonthlymonthlyAvgTemp() {
+        return monthlyAvgTemp;
     }
-    public double getAvgTemp() {
-        return avgTemp;
+    public double getmonthlymonthlyMaxTemp() {
+        return monthlyMaxTemp;
     }
-    public double getMaxTemp() {
-        return maxTemp;
+    public double getmonthlymonthlyMinTemp() {
+        return monthlyMinTemp;
     }
-    public double getMinTemp() {
-        return minTemp;
-    }
-    public double getTotalPrecipitation() {
-        return totalPrecipitation;
+    public double getmonthlymonthlyTotalPrecipitation() {
+        return monthlyTotalPrecipitation;
     }
 
 
@@ -57,10 +49,10 @@ public class MonthlyReport {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MonthlyReport report = (MonthlyReport) o;
-        return Double.compare(report.avgTemp, avgTemp) == 0 && Double.compare(report.maxTemp, maxTemp) == 0 && Double.compare(report.minTemp, minTemp) == 0 && Double.compare(report.totalPrecipitation, totalPrecipitation) == 0 && Objects.equals(data, report.data) && Objects.equals(stationName, report.stationName) && Objects.equals(stationId, report.stationId);
+        return Double.compare(report.monthlyAvgTemp, monthlyAvgTemp) == 0 && Double.compare(report.monthlyMaxTemp, monthlyMaxTemp) == 0 && Double.compare(report.monthlyMinTemp, monthlyMinTemp) == 0 && Double.compare(report.monthlyTotalPrecipitation, monthlyTotalPrecipitation) == 0 && Objects.equals(date, report.date) && Objects.equals(stationName, report.stationName);
     }
     @Override
     public String toString(){
-        return ""+data+""+minTemp+""+maxTemp+""+stationId+""+stationName+""+totalPrecipitation+"";
+        return ""+date+""+monthlyMinTemp+""+monthlyMaxTemp+""+stationName+""+monthlyTotalPrecipitation+"";
     }
 }
