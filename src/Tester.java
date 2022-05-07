@@ -22,13 +22,10 @@ public class Tester extends Application {
 		stage.setResizable(false);
 		stage.show();
                 
-                stage.setOnCloseRequest(new EventHandler<WindowEvent>(){
-                    @Override
-                    public void handle(WindowEvent e) {
-                    Platform.exit();
-                    System.exit(0);
-                    }
-                });
+                stage.setOnCloseRequest((EventHandler<WindowEvent>) e -> {
+				Platform.exit();
+				System.exit(0);
+				});
                 
 		} catch(Exception e) {
 		 e.printStackTrace();
