@@ -43,6 +43,18 @@ public class Storage {
 	}
 
 	/**
+	 * accessor methods for monthlyList and dailyList
+	 * @author Jovan Rodriguez
+	 */
+	public ArrayList<MonthlyReport>getMonthlyList(){
+		return  monthlyList;
+	}
+
+	public ArrayList<DailyReport>getDailyList(){
+		return  dailyList;
+	}
+
+	/**
 	 * @author: Arjun Bott
 	 * [getAllReport method]
 	 * @returns an array copy of the current monthly and daily report lists
