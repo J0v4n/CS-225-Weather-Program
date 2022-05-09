@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="296.0" prefWidth="444.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="mainDailyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="296.0" prefWidth="444.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Line endX="211.0" layoutX="120.0" layoutY="53.0" startX="-115.5" />
       <Label layoutX="28.0" layoutY="16.0" text="Selected Date">
@@ -17,7 +17,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <DatePicker layoutX="128.0" layoutY="14.0" promptText="Select a Date" />
+      <DatePicker fx:id="dailyDateSelector" layoutX="128.0" layoutY="14.0" promptText="Select a Date" />
       <VBox layoutX="11.0" layoutY="61.0" prefHeight="200.0" prefWidth="422.0" style="-fx-background-color: white;">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green;">
