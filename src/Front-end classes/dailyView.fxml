@@ -1,68 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="687.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="296.0" prefWidth="444.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="194.0" layoutX="11.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" width="339.0" />
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="50.0" text="Station">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="stationNameDaily" layoutX="36.0" layoutY="34.0" text="Station Name" textFill="#0569ff">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="22.0" layoutY="81.0" prefHeight="17.0" prefWidth="102.0" text="Wind Speed Unit:" />
-      <ChoiceBox fx:id="windUnitSelector" layoutX="129.0" layoutY="77.0" prefWidth="150.0" />
-      <Label layoutX="22.0" layoutY="128.0" prefHeight="17.0" prefWidth="102.0" text="Percipitation Unit:" />
-      <ChoiceBox fx:id="percipitationUnitSelector" layoutX="129.0" layoutY="124.0" prefWidth="150.0" />
-      <Line endX="211.0" layoutX="129.0" layoutY="162.0" startX="-115.5" />
-      <Label layoutX="22.0" layoutY="172.0" text="Selected Date">
+      <Line endX="211.0" layoutX="120.0" layoutY="53.0" startX="-115.5" />
+      <Label layoutX="28.0" layoutY="16.0" text="Selected Date">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#40f576" height="44.0" layoutX="22.0" layoutY="214.0" stroke="BLACK" strokeType="INSIDE" width="317.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2a900" height="44.0" layoutX="22.0" layoutY="277.0" stroke="BLACK" strokeType="INSIDE" width="317.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8c1fff" height="44.0" layoutX="22.0" layoutY="342.0" stroke="BLACK" strokeType="INSIDE" width="317.0" />
-      <Label layoutX="30.0" layoutY="224.0" text="Average Wind Speed: " textFill="WHITE">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="29.0" layoutY="287.0" text="Maximum Wind Speed: " textFill="WHITE">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="30.0" layoutY="348.0" text="Percipitation: " textFill="WHITE">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <TextArea fx:id="avgWindDisplay" layoutX="244.0" layoutY="218.0" prefHeight="37.0" prefWidth="91.0" />
-      <TextArea fx:id="maxWindDisplay" layoutX="245.0" layoutY="280.0" prefHeight="38.0" prefWidth="91.0" />
-      <TextArea fx:id="percipitationDisplay" layoutX="246.0" layoutY="345.0" prefHeight="38.0" prefWidth="91.0" />
-      <Rectangle fx:id="mapDisplay" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="361.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" width="317.0" />
-      <Label layoutX="361.0" layoutY="206.0" text="Search Station">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <TextField layoutX="361.0" layoutY="231.0" prefHeight="25.0" prefWidth="317.0" promptText="Enter Station Name" />
-      <DatePicker layoutX="129.0" layoutY="170.0" promptText="Select a Date" />
-      <Rectangle fx:id="stationDisplay" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="131.0" layoutX="361.0" layoutY="264.0" stroke="BLACK" strokeType="INSIDE" width="317.0" />
+      <DatePicker layoutX="128.0" layoutY="14.0" promptText="Select a Date" />
+      <VBox layoutX="11.0" layoutY="61.0" prefHeight="200.0" prefWidth="422.0" style="-fx-background-color: white;">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green;">
+               <children>
+                  <Label text="Average Wind Speed: " textFill="WHITE">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="avgWindDisplay" prefHeight="38.0" prefWidth="91.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: orange;">
+               <children>
+                  <Label text="Maximum Wind Speed:" textFill="WHITE">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="maxWindDisplay" prefHeight="38.0" prefWidth="91.0" translateX="4.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: purple;">
+               <children>
+                  <Label text="Percipitation: " textFill="WHITE">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="percipitationDisplay" prefHeight="38.0" prefWidth="91.0" translateX="104.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </Pane>
