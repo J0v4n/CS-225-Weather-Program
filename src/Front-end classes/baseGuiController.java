@@ -1,3 +1,5 @@
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
@@ -7,6 +9,7 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class baseGuiController {
     
@@ -34,9 +37,26 @@ public class baseGuiController {
     @FXML
     private ToggleButton nightMode_Toggle;
 
-    private void swapColorModes(){
-        nightMode_Toggle.setOnAction((event) -> {
-            
-        });
+    @FXML
+    private VBox parentPane;
+
+    private boolean isLightMode = true;
+
+    public void swapColorModes(ActionEvent event){
+      isLightMode = !isLightMode;
+       if(isLightMode){
+        removeDarkMode();
+       }
+       else{
+           setDarkMode();
+       }
+    }
+    public void setDarkMode(){
+        parentPane.getStylesheets().add("styles/darkMode.css");
+        nightMode_Toggle.setText("Light Mode");
+    }
+    public void removeDarkMode(){
+        parentPane.getStylesheets().remove("styles/darkMode.css");
+        nightMode_Toggle.setText("Dark Mode");
     }
 }
