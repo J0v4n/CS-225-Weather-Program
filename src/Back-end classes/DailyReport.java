@@ -3,7 +3,7 @@ import java.util.Objects;
 /**
  * @author David Smirnov
  */
-public class DailyReport {
+public class DailyReport implements IReport {
     private String data;
     private String stationName;
     private String stationId;

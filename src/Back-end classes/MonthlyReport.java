@@ -2,7 +2,7 @@ import java.util.Objects;
 /**
  * @author David
  */
-public class MonthlyReport {
+public class MonthlyReport implements IReport {
     private String data;
     private String stationName;
     private String stationId;
