@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
+src/Front-end classes/WeatherUI.fxml
 
 <VBox prefHeight="461.0" prefWidth="631.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGuiController">
   <children>
@@ -24,9 +25,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="450.0" prefWidth="640.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneController">
+
+<VBox prefHeight="461.0" prefWidth="631.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGuiController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="450.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="487.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
          <children>
             <Group layoutX="1.0">
                <children>
@@ -87,7 +89,9 @@
                </children>
             </Group>
             <Group layoutX="-7.0" layoutY="21.0">
+:src/Front-end classes/WeatherUI.fxml
             <Group layoutX="-7.0" layoutY="4.0">
+
                <children>
                   <Label layoutX="349.0" layoutY="202.0" text="Search Station">
                      <font>
@@ -95,6 +99,7 @@
                      </font>
                   </Label>
                   <ScrollPane fx:id="stationName_Display" fitToHeight="true" fitToWidth="true" layoutX="349.0" layoutY="268.0" prefHeight="167.0" prefWidth="277.0">
+ HEAD:src/Front-end classes/WeatherUI.fxml
                      <content>
                         <ScrollBar fx:id="stationName_ScrollBar" nodeOrientation="RIGHT_TO_LEFT" opacity="0.91" orientation="VERTICAL" prefHeight="167.0" prefWidth="14.0" snapToPixel="false" style="-fx-background-radius: 20;" />
                      </content>
@@ -106,21 +111,17 @@
             <Pane fx:id="map_Pane" layoutX="341.0" layoutY="29.0" prefHeight="188.0" prefWidth="278.0" style="-fx-background-color: #d7d7d2;" />
             <ToggleButton fx:id="nightMode_Toggle" layoutX="14.0" layoutY="422.0" mnemonicParsing="false" prefHeight="9.0" prefWidth="96.0" text="ToggleButton" />
                   <ScrollPane fx:id="stationName_Display" fitToWidth="true" layoutX="349.0" layoutY="268.0" prefHeight="167.0" prefWidth="277.0">
+
                      <content>
-                        <ScrollBar fx:id="stationName_ScrollBar" nodeOrientation="RIGHT_TO_LEFT" opacity="0.91" orientation="VERTICAL" prefHeight="167.0" prefWidth="14.0" snapToPixel="false" style="-fx-background-radius: 20;"/>
-
-                        <Pane id="spane" fx:id="spane" disable="true" mouseTransparent="true" prefHeight="600.0" prefWidth="600">
-
-                           </Pane>
-
+                        <ScrollBar fx:id="stationName_ScrollBar" nodeOrientation="RIGHT_TO_LEFT" opacity="0.91" orientation="VERTICAL" prefHeight="167.0" prefWidth="14.0" snapToPixel="false" style="-fx-background-radius: 20;" />
                      </content>
-
                   </ScrollPane>
-                  <TextField id="station_SearchBar" fx:id="station_SearchBar" layoutX="349.0" layoutY="233.0" onAction="#search" onDragOver="#search" onInputMethodTextChanged="#search"  onTouchStationary="#search" prefHeight="18.0" prefWidth="277.0" promptText="Enter Text" />
+                  <TextField fx:id="station_SearchBar" layoutX="349.0" layoutY="233.0" prefHeight="18.0" prefWidth="277.0" promptText="Enter Text" />
                </children>
             </Group>
-            <Pane fx:id="cards_Pane" layoutX="8.0" layoutY="239.0" prefHeight="200.0" prefWidth="278.0" style="-fx-background-color: #d7d7d2;" />
-            <Pane fx:id="map_Pane" layoutX="341.0" layoutY="14.0" prefHeight="188.0" prefWidth="278.0" style="-fx-background-color: #d7d7d2;" />
+            <Pane fx:id="cards_Pane" layoutX="14.0" layoutY="217.0" prefHeight="200.0" prefWidth="278.0" style="-fx-background-color: #d7d7d2;" />
+            <Pane fx:id="map_Pane" layoutX="341.0" layoutY="29.0" prefHeight="188.0" prefWidth="278.0" style="-fx-background-color: #d7d7d2;" />
+            <ToggleButton fx:id="nightMode_Toggle" layoutX="14.0" layoutY="422.0" mnemonicParsing="false" prefHeight="9.0" prefWidth="96.0" text="ToggleButton" />
          </children>
     </AnchorPane>
   </children>
