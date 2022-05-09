@@ -16,19 +16,16 @@ public class Tester extends Application {
  	@Override
 	public void start(Stage stage) {
 		try {
-		Parent root = FXMLLoader.load(getClass().getResource("WeatherUI.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("Map.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.show();
                 
-                stage.setOnCloseRequest(new EventHandler<WindowEvent>(){
-                    @Override
-                    public void handle(WindowEvent e) {
-                    Platform.exit();
-                    System.exit(0);
-                    }
-                });
+                stage.setOnCloseRequest((EventHandler<WindowEvent>) e -> {
+				Platform.exit();
+				System.exit(0);
+				});
                 
 		} catch(Exception e) {
 		 e.printStackTrace();
