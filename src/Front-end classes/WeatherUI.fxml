@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
@@ -9,19 +10,21 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="parentPane" prefHeight="652.0" prefWidth="914.0" xmlns="http://javafx.com/javafx/8.0.321" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGuiController">
+<VBox fx:id="parentPane" prefHeight="652.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/8.0.321" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGuiController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="655.0" prefWidth="925.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="652.0" prefWidth="968.0" VBox.vgrow="ALWAYS">
          <children>
             <Group layoutX="1.0" layoutY="38.0">
                <children>
@@ -81,7 +84,7 @@
                   </Label>
                </children>
             </Group>
-            <Group layoutX="61.0" layoutY="203.0">
+            <Group layoutX="133.0" layoutY="203.0">
                <children>
                   <Label layoutX="349.0" layoutY="202.0" text="Search Station">
                      <font>
@@ -96,9 +99,8 @@
                   <TextField fx:id="station_SearchBar" layoutX="349.0" layoutY="233.0" prefHeight="25.0" prefWidth="474.0" promptText="Enter Text" />
                </children>
             </Group>
-            <Pane fx:id="cards_Pane" layoutX="27.0" layoutY="261.0" prefHeight="351.0" prefWidth="304.0" style="-fx-background-color: #d7d7d2;" />
             <ToggleButton fx:id="nightMode_Toggle" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#swapColorModes" text="Night Mode" />
-            <AnchorPane id="map-container" fx:id="mapContainer" layoutX="358.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="521.0" style="-fx-background-color: #434343;" stylesheets="@css/map-styles.css">
+            <AnchorPane id="map-container" fx:id="mapContainer" layoutX="430.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="521.0" style="-fx-background-color: #434343;" stylesheets="@css/map-styles.css">
                <children>
                   <ImageView disable="true" fitHeight="493.0" fitWidth="600.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -131,6 +133,51 @@
                   <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="129.0" layoutY="188.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="WESTFIELD" toggleGroup="$station" />
                   <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="289.0" layoutY="132.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="BEDFORD" toggleGroup="$station" />
                   <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="258.0" layoutY="174.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="WORCESTER" toggleGroup="$station" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="460.0">
+               <children>
+                  <Line endX="211.0" layoutX="136.0" layoutY="55.0" startX="-115.5" />
+                  <Label layoutX="20.0" layoutY="20.0" text="Selected Date">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dailyDateSelector" layoutX="126.0" layoutY="18.0" promptText="Select a Date" />
+                  <VBox layoutX="20.0" layoutY="81.0" prefHeight="200.0" prefWidth="422.0" style="-fx-background-color: white;">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green;">
+                           <children>
+                              <Label text="Average Wind Speed: " textFill="WHITE">
+                                 <font>
+                                    <Font size="33.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="avgWindDisplay" prefHeight="38.0" prefWidth="91.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: orange;">
+                           <children>
+                              <Label text="Maximum Wind Speed:" textFill="WHITE">
+                                 <font>
+                                    <Font size="31.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="maxWindDisplay" prefHeight="38.0" prefWidth="91.0" translateX="4.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: purple;">
+                           <children>
+                              <Label text="Precipitation: " textFill="WHITE">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="precipitationDisplay" prefHeight="38.0" prefWidth="91.0" translateX="104.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
          </children>
