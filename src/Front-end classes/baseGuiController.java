@@ -46,7 +46,12 @@ public class baseGuiController {
     @FXML
     private MapController mapController;
 
+    @FXML
+    private StationController stationController;
+
     private boolean isLightMode = true;
+
+
 
     public void swapColorModes(ActionEvent event){
       isLightMode = !isLightMode;
@@ -66,9 +71,15 @@ public class baseGuiController {
         nightMode_Toggle.setText("Dark Mode");
     }
 
-    public void stationSelected(ActionEvent event) {
+    public void setStationController(StationController stationController) {
+        this.stationController = stationController;
+    }
+
+    public void stationSelected(ActionEvent event) throws Exception{
         String station = ((RadioButton) event.getSource()).getText();
-        station_SearchBar.setText(station);
+        stationController.setSearch(station);
         
     }
+    
+    
 }

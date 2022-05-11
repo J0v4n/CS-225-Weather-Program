@@ -23,4 +23,8 @@ public class converterTester {
         System.out.println("Temp in F = " + converter.celsiusToFahrenheit(currentTempC) + "\n");
 
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> yuliia-branch

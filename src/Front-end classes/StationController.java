@@ -26,7 +26,7 @@ import javafx.scene.layout.Pane;
 /**
  * Responsible for controlling the main UI elements of the Simulation
  */
-public class SceneController implements Initializable{
+public class StationController implements Initializable{
 	 ArrayList<String> words = new ArrayList<>(
 	            Arrays.asList("ANDOVER 0.6 E, MA, US\n 2021-03-21\n", "WORCESTER 0.6 E, MA, US\n 2021-03-21\n", "BOSTON 0.6 E, MA, US\n 2021-03-21\n")
 	    );
@@ -34,29 +34,7 @@ public class SceneController implements Initializable{
 	    private Pane cards_Pane;
 	  ListView<String> list = new ListView<>();
 
-	    @FXML
-	    private MenuItem celsius_Option;
-
-	    @FXML
-	    private MenuItem fahrenheit_Option;
-
-	    @FXML
-	    private MenuItem kelvin_Option;
-
-	    @FXML
-	    private Pane map_Pane;
-
-	    @FXML
-	    private Separator separator_Dash;
-
-	    @FXML
-	    private MenuItem sortBy_Date;
-
-	    @FXML
-	    private MenuItem sortBy_Date1;
-
-	    @FXML
-	    private SplitMenuButton sortBy_DropDown;
+	    
 
 	    @FXML
 	    private Label sortBy_Label;
@@ -64,23 +42,11 @@ public class SceneController implements Initializable{
 	    Label l1=new Label("jeis");
 	    Label l2=new Label("hes");
 	    
-	    @FXML
-	    private MenuItem sortBy_Month;
-
-	    @FXML
-	    private MenuItem sortBy_Month1;
-
-	    @FXML
-	    private SplitMenuButton sortedBy_DropDown;
-
-	    @FXML
-	    private Label sorted_Label;
+	   
 
 	    @FXML
 	    private Pane spane;
 
-	    @FXML
-	    private Label static_StationLabel;
 
 	    @FXML
 	    private ScrollPane stationName_Display;
@@ -89,16 +55,8 @@ public class SceneController implements Initializable{
 	    private ScrollBar stationName_ScrollBar;
 
 	    @FXML
-	    private Label station_Name;
-
-	    @FXML
 	    private TextField station_SearchBar;
 
-	    @FXML
-	    private SplitMenuButton unit_DropDown;
-
-	    @FXML
-	    private Label unit_Label;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
@@ -116,10 +74,20 @@ public class SceneController implements Initializable{
         
 	}
     @FXML
-    void search(ActionEvent event) throws Exception {
+    public void search(ActionEvent event) throws Exception {
         list.getItems().clear();
         list.getItems().addAll(searchList(station_SearchBar.getText(),words));
+		
     }
+
+	//christian
+	public void setSearch(String station) throws Exception {
+		// list.getItems().clear();
+		// station_SearchBar.setText(station);
+        // list.getItems().addAll(searchList(station,words));
+		System.out.print("bruh");
+	}
+
     @FXML
     public List<String> searchList(String searchWords, List<String> listOfStrings) throws Exception{
 
