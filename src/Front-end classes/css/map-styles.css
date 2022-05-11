@@ -6,10 +6,24 @@
     -fx-border-radius: 25px;
     -fx-background-radius: 25px;
     -fx-background-insets: 1px;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
 }
 
 .station-button:selected, .station-button:hover {
     -fx-text-fill: white;
     -fx-background-color: rgb(75, 117, 255);
     -fx-border-width: 2px;
+    
+    
+}
+
+.station-button:hover {
+    -fx-scale-x: 1.4;
+    -fx-scale-y: 1.4;
+}
+
+#map-container {
+    -fx-scale-x: .8;
+    -fx-scale-y: .8;
 }

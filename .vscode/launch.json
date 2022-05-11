@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Tester",
+            "request": "launch",
+            "mainClass": "Tester",
+            "projectName": "CS-225-Weather-Program_73c8ff98"
+        },
+        {
+            "type": "java",
+            "name": "Launch WeatherUITester",
+            "request": "launch",
+            "mainClass": "WeatherUITester",
+            "projectName": "CS-225-Weather-Program_73c8ff98"
+        },
+        {
+            "type": "java",
             "name": "Launch WeatherUITester",
             "request": "launch",
             "mainClass": "WeatherUITester",

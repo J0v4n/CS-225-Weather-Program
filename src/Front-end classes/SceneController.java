@@ -1,7 +1,4 @@
-/**
- * @author Christian Rudder
- * modified by Yuliia Synytska
- */
+
 
 import java.net.URL;
 import java.util.ArrayList;

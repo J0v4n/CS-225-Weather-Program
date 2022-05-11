@@ -1,6 +1,4 @@
-/**
- * @author Christian
- */
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,7 +28,8 @@ public class MapController implements Initializable{
    
  
     public String stationSelected(ActionEvent event) {
-        System.out.println(((RadioButton) event.getSource()).getText());
+        // System.out.println(event);
+        // System.out.println(((RadioButton) event.getSource()).getText());
         return ((RadioButton) event.getSource()).getText();
     }
     

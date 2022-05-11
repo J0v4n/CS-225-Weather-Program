@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox fx:id="parentPane" prefHeight="450.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGuiController">
+<VBox fx:id="parentPane" prefHeight="652.0" prefWidth="914.0" xmlns="http://javafx.com/javafx/8.0.321" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGuiController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="450.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="655.0" prefWidth="925.0" VBox.vgrow="ALWAYS">
          <children>
-            <Group layoutX="1.0">
+            <Group layoutX="1.0" layoutY="38.0">
                <children>
                   <Label fx:id="sorted_Label" layoutX="24.0" layoutY="172.0" text="Selected Month:">
                      <font>
@@ -68,26 +79,60 @@
                         <Font name="Nirmala UI" size="24.0" />
                      </font>
                   </Label>
-                  <ToggleButton fx:id="nightMode_Toggle" layoutX="77.0" layoutY="12.0" mnemonicParsing="false" onAction="#swapColorModes" text="Night Mode" />
                </children>
             </Group>
-            <Group layoutX="-7.0" layoutY="4.0">
+            <Group layoutX="61.0" layoutY="203.0">
                <children>
                   <Label layoutX="349.0" layoutY="202.0" text="Search Station">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ScrollPane fx:id="stationName_Display" fitToHeight="true" fitToWidth="true" layoutX="349.0" layoutY="268.0" prefHeight="167.0" prefWidth="277.0">
+                  <ScrollPane fx:id="stationName_Display" fitToHeight="true" fitToWidth="true" layoutX="349.0" layoutY="268.0" prefHeight="167.0" prefWidth="475.0">
                      <content>
                         <ScrollBar fx:id="stationName_ScrollBar" nodeOrientation="RIGHT_TO_LEFT" opacity="0.91" orientation="VERTICAL" prefHeight="167.0" prefWidth="14.0" snapToPixel="false" style="-fx-background-radius: 20;" />
                      </content>
                   </ScrollPane>
-                  <TextField fx:id="station_SearchBar" layoutX="349.0" layoutY="233.0" prefHeight="18.0" prefWidth="277.0" promptText="Enter Text" />
+                  <TextField fx:id="station_SearchBar" layoutX="349.0" layoutY="233.0" prefHeight="25.0" prefWidth="474.0" promptText="Enter Text" />
                </children>
             </Group>
-            <Pane fx:id="cards_Pane" layoutX="8.0" layoutY="223.0" prefHeight="200.0" prefWidth="278.0" style="-fx-background-color: #d7d7d2;" />
-            <Pane fx:id="map_Pane" layoutX="341.0" layoutY="14.0" prefHeight="188.0" prefWidth="278.0" style="-fx-background-color: #d7d7d2;" />
+            <Pane fx:id="cards_Pane" layoutX="27.0" layoutY="261.0" prefHeight="351.0" prefWidth="304.0" style="-fx-background-color: #d7d7d2;" />
+            <ToggleButton fx:id="nightMode_Toggle" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#swapColorModes" text="Night Mode" />
+            <AnchorPane id="map-container" fx:id="mapContainer" layoutX="358.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="521.0" style="-fx-background-color: #434343;" stylesheets="@css/map-styles.css">
+               <children>
+                  <ImageView disable="true" fitHeight="493.0" fitWidth="600.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@media/19460570.jpg" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D minX="300.0" minY="300.0" width="1.0" />
+                     </viewport>
+                  </ImageView>
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="391.0" layoutY="115.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="BEVERLY">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="station" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="387.0" layoutY="166.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="BLUE HILL" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="380.0" layoutY="142.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" selected="true" styleClass="station-button" text="BOSTON" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="494.0" layoutY="263.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#stationSelected" styleClass="station-button" text="CHATHAM" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="280.0" layoutY="97.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="FITCHBURG" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="488.0" layoutY="291.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="HYANNIS" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="491.0" layoutY="353.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#stationSelected" styleClass="station-button" text="NANTUCKET" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="368.0" layoutY="52.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="LAWARENCE" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="392.0" layoutY="264.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="NEW BEDFORD" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="50.0" layoutY="75.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="NORTH ADAMS" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="377.0" layoutY="188.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="NORWOOD" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="196.0" layoutY="89.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="ORANGE" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="37.0" layoutY="132.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="PITTSFIELD" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="432.0" layoutY="214.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="PLYMOUTH" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="386.0" layoutY="235.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="TAUNTON" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="467.0" layoutY="331.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="VINEYARD" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="129.0" layoutY="188.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="WESTFIELD" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="289.0" layoutY="132.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="BEDFORD" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="258.0" layoutY="174.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="WORCESTER" toggleGroup="$station" />
+               </children>
+            </AnchorPane>
          </children>
     </AnchorPane>
   </children>

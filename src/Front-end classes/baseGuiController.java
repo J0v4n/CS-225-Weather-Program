@@ -1,7 +1,9 @@
+
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
@@ -40,6 +42,10 @@ public class baseGuiController {
     @FXML
     private VBox parentPane;
 
+    //chritian
+    @FXML
+    private MapController mapController;
+
     private boolean isLightMode = true;
 
     public void swapColorModes(ActionEvent event){
@@ -58,5 +64,11 @@ public class baseGuiController {
     public void removeDarkMode(){
         parentPane.getStylesheets().remove("styles/darkMode.css");
         nightMode_Toggle.setText("Dark Mode");
+    }
+
+    public void stationSelected(ActionEvent event) {
+        String station = ((RadioButton) event.getSource()).getText();
+        station_SearchBar.setText(station);
+        
     }
 }
