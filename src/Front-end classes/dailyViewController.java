@@ -4,7 +4,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.time.chrono.Chronology;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 //Controller class for the daily view section of the GUI -Justin Lamberson
@@ -30,6 +33,8 @@ public class dailyViewController implements Initializable {
         maxWindDisplay.setEditable(false);
         precipitationDisplay.setEditable(false);
 
+
+
     }
 
     //Used to set the display for the average wind
@@ -51,8 +56,9 @@ public class dailyViewController implements Initializable {
     }
 
     //used to get the date selected by the user
-    public Chronology getDate(){
-        return dailyDateSelector.getChronology();
+    public String getDate(){
+        //System.out.println(dailyDateSelector.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"))); used to test what the output was for the date
+        return dailyDateSelector.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
     }
 
 
