@@ -21,6 +21,7 @@
 .station-button:hover {
     -fx-scale-x: 1.4;
     -fx-scale-y: 1.4;
+    -fx-effect: dropshadow( gaussian , black,10,0.1,0,0 );
 }
 
 #map-container {
