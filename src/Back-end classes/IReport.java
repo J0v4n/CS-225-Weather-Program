@@ -3,7 +3,6 @@
  * interface for monthly and daily reports
  */
 public interface IReport {
-	public String getData();
+	public String getDate();
 	public String getStationName();
-	public String getStationId();
 }

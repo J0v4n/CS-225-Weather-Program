@@ -44,9 +44,41 @@ public class Storage {
 
 	/**
 	 * @author: Arjun Bott
+	 * [getAllDaily method]
+	 * @returns an array copy of the current daily report list
+	 */
+	public IReport[] getAllDaily() {
+		IReport[] buffer = new IReport[this.dailyList.size()];
+
+		for (int i = 0; i < this.dailyList.size(); i++) {
+			buffer[i] = this.dailyList.get(i);
+		}
+
+		return buffer;
+	}
+
+	/**
+	 * @author: Arjun Bott
+	 * [getAllMonthly method]
+	 * @returns an array copy of the current monthly report list
+	 */
+	public IReport[] getAllMonthly() {
+		IReport[] buffer = new IReport[this.monthlyList.size()];
+
+		for (int i = 0; i < this.monthlyList.size(); i++) {
+			buffer[i] = this.monthlyList.get(i);
+		}
+
+		return buffer;
+	}
+
+	/**
+	 * @author: Arjun Bott
 	 * [getAllReport method]
+	 * @deprecated use the getAllDaily and/or getAllMonthly instead
 	 * @returns an array copy of the current monthly and daily report lists
 	 */
+	@Deprecated
 	public IReport[] getAllReport() {
 		IReport[] buffer = new IReport[this.monthlyList.size() + this.dailyList.size()];
 
@@ -64,31 +96,79 @@ public class Storage {
 	/**
 	 * @author: Arjun Bott
 	 * @param  filename the CSV to read
-	 * @return an ArrayList of Reports
-	 * @implNote The CSV files and the report classes arent matching at the moment
+	 * @return an IReport[]
 	 */
-	public ArrayList<IReport> readCSV(String filename) throws FileNotFoundException {
+	public IReport[] readCSV(String filename) throws FileNotFoundException {
 		ArrayList<IReport> buffer = new ArrayList<IReport>();
 		Scanner reader = new Scanner(new File(filename));
 		String[] tokens;
 		String lastStationName;
 
-		reader.next(); // skip the first line, that contains metadata, that shouldn't be parsed
+		// parse the first line for metadata
+		tokens = reader.next().split(",");
+		String[] dailyTokens = new String[]{
+			"Station",
+			"Date",
+			"Daily Average Wind Speed",
+			"Daily Max Wind Speed",
+			"Daily Precipitation"
+		};
 
-		while (reader.hasNext()) {
-			tokens = reader.next().split(",");
-
-			if (tokens.length == 7) {
-				// MonthlyReport(String info, String sN, String sID,double aTemp,double highTemp,double lowTemp,double tPrecipitation)
-				// buffer.add( new MonthlyReport("", tokens[0], "", double, double, double, double) );
-			} else if (tokens.length == 5) {
-				// DailyReport(String info,String sN,String sID,double aWS, double mWS, double dPersipitation)
-				// buffer.add( new DailyReport("", tokens[0], "", double, double) );
-			}
-
+		// check if this is a daily report if the lengths are the same
+		// if the lengths are not the same, then this isn't a daily report
+		boolean isDailyReport = tokens.length == dailyTokens.length;
+		for (int i = 0; isDailyReport && i < tokens.length; i++) {
+			// does tokens at i minus the whitespace "equal" dailyTokens at i
+			isDailyReport = tokens[i].trim().equals(dailyTokens[i]);
 		}
 
-		return buffer;
+		String[] monthlyTokens = new String[] {
+			"Station",
+			"Date",
+			"Monthly Total Precipitation",
+			"Monthly Minimum Temperature",
+			"Monthly Average Temperature",
+			"Monthly Maximum Temperature"
+		};
+
+		// check if this is a monthly report if the lengths are the same
+		// if the lengths are not the same, then this isn't a monthly report
+		boolean isMonthlyReport = tokens.length == monthlyTokens.length;
+		for (int i = 0; isMonthlyReport && i < tokens.length; i++) {
+			// does tokens at i minus the whitespace "equal" monthlyTokens at i
+			isMonthlyReport = tokens[i].trim().equals(monthlyTokens[i]);
+		}
+
+
+		while (isDailyReport && reader.hasNext()) {
+			tokens = reader.next().split(",");
+			buffer.add(new DailyReport(
+				tokens[0], // date
+				tokens[1], // station name
+				Double.valueOf(tokens[2]).doubleValue(), // daily average wind speed
+				Double.valueOf(tokens[3]).doubleValue(), // daily max wind speed
+				Double.valueOf(tokens[4]).doubleValue()  // daily precipitation
+			));
+		}
+
+		while (isMonthlyReport && reader.hasNext()) {
+			tokens = reader.next().split(",");
+			buffer.add(new MonthlyReport(
+				tokens[0], // date
+				tokens[1], // station name
+				Double.valueOf(tokens[2]).doubleValue(), // monthly average temperature
+				Double.valueOf(tokens[3]).doubleValue(), // monthly high temperature
+				Double.valueOf(tokens[4]).doubleValue(), // monthly low temperature
+				Double.valueOf(tokens[5]).doubleValue()  // monthly precipitation
+			));
+		}
+
+		IReport[] arrayBuffer = new IReport[buffer.size()];
+		for (int i = 0; i < arrayBuffer.length; i++) {
+			arrayBuffer[i] = buffer.get(i);
+		}
+
+		return arrayBuffer;
 	}
 
 
@@ -283,14 +363,14 @@ public class Storage {
 
 		//DailyList Case:
 		if(isDailyList == 1) {
-			String foundDate[] = this.dailyList.get(highIdx).getData().split("/");
+			String foundDate[] = this.dailyList.get(highIdx).getDate().split("/");
 			for(int k=0; i<3; k++) {
 				pivot[k]=Integer.parseInt(foundDate[k]);
 			}
 			i = lowIdx - 1;
 
 			for(int j=lowIdx; j < highIdx; j++) {
-				foundDate = this.dailyList.get(highIdx).getData().split("/");
+				foundDate = this.dailyList.get(highIdx).getDate().split("/");
 				int[] currDate = new int[3];
 				for(int k=0; i<3; k++) {
 					currDate[k]=Integer.parseInt(foundDate[k]);
@@ -315,14 +395,14 @@ public class Storage {
 
 		//MonthlyList Case
 		if(isDailyList == 2){
-			String foundDate[] = this.monthlyList.get(highIdx).getData().split("/");
+			String foundDate[] = this.monthlyList.get(highIdx).getDate().split("/");
 			for(int k=0; i<3; k++) {
 				pivot[k]=Integer.parseInt(foundDate[k]);
 			}
 			i = lowIdx - 1;
 
 			for(int j=lowIdx; j < highIdx; j++) {
-				foundDate = this.monthlyList.get(highIdx).getData().split("/");
+				foundDate = this.monthlyList.get(highIdx).getDate().split("/");
 				int[] currDate = new int[3];
 				for(int k=0; i<3; k++) {
 					currDate[k]=Integer.parseInt(foundDate[k]);
@@ -344,5 +424,39 @@ public class Storage {
 			this.monthlyList.set(highIdx, temp);
 		}
 		return i + 1;
+	}
+
+	/**
+	 * @author: Arjun Bott
+	 * [eqauls method]
+	 * @param  obj  [the other object to check equality for]
+	 * @return the equality of the two objects
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || obj.getClass() != this.getClass())
+			return false;
+		return ((Storage) obj).dailyList.equals(this.dailyList) &&
+				 ((Storage) obj).monthlyList.equals(this.monthlyList);
+	}
+
+	/**
+	 * @author: Arjun Bott
+	 * returns a string representation of this object
+	 * @return a string representation of this object
+	 */
+	@Override
+	public String toString() {
+		String buffer = "[Storage]\t";
+		buffer += this.dailyList.toString() + "\t";
+		buffer += this.monthlyList.toString();
+		return buffer;
+	}
+
+	/**
+	 * [storage tester]
+	 */
+	public static void main(String[] args) {
+		System.out.println("hello world");
 	}
 }
