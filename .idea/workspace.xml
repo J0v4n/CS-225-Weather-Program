@@ -2,19 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b154b5bd-3dc4-4f6f-af27-b866fe1c06df" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Weather_Data.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS-225-Weather-Program.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CS-225-Weather-Program.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/Front-end classes/dailyView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/baseGuiController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Front-end classes/dailyView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Front-end classes/dailyView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaFXApplication" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,7 +35,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.dailyViewTester">
     <configuration name="Tester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Tester" />
       <module name="CS-225-Weather-Program" />
@@ -39,8 +43,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="dailyViewTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dailyViewTester" />
+      <module name="CS-225-Weather-Program" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.dailyViewTester" />
         <item itemvalue="Application.Tester" />
       </list>
     </recent_temporary>
