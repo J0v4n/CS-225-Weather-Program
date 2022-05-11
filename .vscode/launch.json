@@ -6,6 +6,14 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch WeatherUITester",
+            "request": "launch",
+            "mainClass": "WeatherUITester",
+            "vmArgs": "--module-path D:/JavaFX/javafx-sdk-18.0.1/lib --add-modules javafx.controls,javafx.fxml",
+            "projectName": "CS-225-Weather-Program_29453032"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
@@ -15,7 +23,7 @@
             "name": "Launch Tester",
             "request": "launch",
             "mainClass": "Tester",
-            "vmArgs": "--module-path D:/JavaFX/javafx-sdk-17.0.2/lib --add-modules javafx.controls,javafx.fxml",
+            "vmArgs": "--module-path D:/JavaFX/javafx-sdk-18.0.1/lib --add-modules javafx.controls,javafx.fxml",
             "projectName": "CS-225-Weather-Program_29453032"
         }
     ]
