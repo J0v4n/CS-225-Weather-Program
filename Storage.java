@@ -1,97 +1,14 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Storage {
-
+    
 	/**
 	 * Arjun's part
-	 * class variables (lists for monthly and daily reports)
-	 * constructor
-	 * getAllReport()
-	 * readCSV()
-	 * writeCSV()
 	 */
-
-	/**
-	 * @author: Arjun Bott
-	 * [class variable]
-	 * a list for a MonthlyReport
-	 */
-	private ArrayList<MonthlyReport> monthlyList;
-
-	/**
-	 * @author: Arjun Bott
-	 * [class variable]
-	 * a list for DailyReport
-	 */
-	private ArrayList<DailyReport> dailyList;
-
-
-
-	/**
-	 * @author: Arjun Bott
-	 * default constructor
-	 */
-	public Storage() {
-		this.monthlyList = new ArrayList<MonthlyReport>();
-		this.dailyList = new ArrayList<DailyReport>();
-	}
-
-	/**
-	 * @author: Arjun Bott
-	 * [getAllReport method]
-	 * @returns an array copy of the current monthly and daily report lists
-	 */
-	public IReport[] getAllReport() {
-		IReport[] buffer = new IReport[this.monthlyList.size() + this.dailyList.size()];
-
-		for (int i = 0; i < this.monthlyList.size(); i++) {
-			buffer[i] = this.monthlyList.get(i);
-		}
-
-		for (int i = 0; i < this.dailyList.size(); i++) {
-			buffer[this.monthlyList.size() + i] = this.dailyList.get(i);
-		}
-
-		return buffer;
-	}
-
-	/**
-	 * @author: Arjun Bott
-	 * @param  filename the CSV to read
-	 * @return an ArrayList of Reports
-	 * @implNote The CSV files and the report classes arent matching at the moment
-	 */
-	public ArrayList<IReport> readCSV(String filename) throws FileNotFoundException {
-		ArrayList<IReport> buffer = new ArrayList<IReport>();
-		Scanner reader = new Scanner(new File(filename));
-		String[] tokens;
-		String lastStationName;
-
-		reader.next(); // skip the first line, that contains metadata, that shouldn't be parsed
-
-		while (reader.hasNext()) {
-			tokens = reader.next().split(",");
-
-			if (tokens.length == 7) {
-				// MonthlyReport(String info, String sN, String sID,double aTemp,double highTemp,double lowTemp,double tPrecipitation)
-				// buffer.add( new MonthlyReport("", tokens[0], "", double, double, double, double) );
-			} else if (tokens.length == 5) {
-				// DailyReport(String info,String sN,String sID,double aWS, double mWS, double dPersipitation)
-				// buffer.add( new DailyReport("", tokens[0], "", double, double) );
-			}
-
-		}
-
-		return buffer;
-	}
-
-
+	
 	/**
 	 * @author: Carlos Rodriguez
 	 * First sort to use, based on date
@@ -101,19 +18,19 @@ public class Storage {
 		sortByDate(1);
 		sortByDate(2);
 	}
-
+			
 	/**
 	 * @author: Carlos Rodriguez
 	 * Helper method to generate a random pivot for
 	 * the sorting algorithms in order to decrease
-	 * the chances of approaching O(n^2) due to a
+	 * the chances of approaching O(n^2) due to a 
 	 * bad partioning. Changes the randomized pivot
 	 * position with the last element of the lists.
-	 *
+	 * 
 	 * @param lowIdx: lowest index to consider for
 	 * the partition(inclusive).
 	 * @param highIdx: highest index to consider
-	 * for the partioning(inclusive).
+	 * for the partioning(inclusive). 
 	 * @param: isDailyList: does the randomization
 	 * for the dailyList if 1, does it for the
 	 * monthlyList if 2. */
@@ -131,16 +48,16 @@ public class Storage {
 			case 2:
 				MonthlyReport mTemp = this.monthlyList.get(pivotIdx);
 				this.monthlyList.set(pivotIdx, this.monthlyList.get(highIdx));
-				this.monthlyList.set(highIdx, mTemp);
+				this.monthlyList.set(highIdx, mTemp); 
 				break;
 			default:
 				System.out.println("Error, list not identified!");
 		}
 	}
-
+	
 	/**
 	 * @author: Carlos Rodriguez
-	 *
+	 * 
 	 * @param isDailyList: int to define if the list
 	 * referred to is the daily list if 1, the monthly
 	 * list if 2.
@@ -148,10 +65,10 @@ public class Storage {
 	public void sortByStations(int isDailyList) {
 		sortStation(0, this.dailyList.size()-1, isDailyList);
 	}
-
+	
 	/**
 	 * @author: Carlos Rodriguez
-	 *
+	 * 
 	 * @param isDailyList: int to define if the list
 	 * referred to is the daily list if 1, the monthly
 	 * list if 2.
@@ -159,15 +76,15 @@ public class Storage {
 	public void sortByDate(int isDailyList) {
 		sortDate(0, this.dailyList.size()-1, isDailyList);
 	}
-
+	
 	/**
 	 * @author: Carlos Rodriguez
-	 *
+	 * 
 	 * Helper method takes care of partitioning either the
 	 * monthly list or the daily list. Invokes partitioning
 	 * based on station recursively.
-	 *
-	 *
+	 *   
+	 * 
 	 * @param lowIdx: lowest index to start partition.
 	 * @param highIdx: highest index to partition at.
 	 * @param isDailyList: int to define if the list
@@ -181,15 +98,15 @@ public class Storage {
 			sortStation(partitionIdx+1, highIdx, isDailyList);
 		}
 	}
-
+	
 	/**
 	 * @author: Carlos Rodriguez
-	 *
+	 * 
 	 * Helper method takes care of partitioning either the
 	 * monthly list or the daily list. Invokes partitioning
 	 * based on date recursively.
-	 *
-	 *
+	 *   
+	 * 
 	 * @param lowIdx: lowest index to start partition.
 	 * @param highIdx: highest index to partition at.
 	 * @param isDailyList: int to define if the list
@@ -203,15 +120,15 @@ public class Storage {
 			sortDate(partitionIdx+1, highIdx, isDailyList);
 		}
 	}
-
+	
 	/**
 	 * @author: Carlos Rodriguez
-	 *
+	 * 
 	 * Evaluates the first char of a Report's station name
 	 * as pivot, and sorts all the reports in a list based
 	 * on partitions (from lowest index entered to highest)
 	 * comparing the values with the chosen pivot.
-	 *
+	 * 
 	 * @param lowIdx: lowest index to start the partition.
 	 * @param highIdx: highest index to start the partition.
 	 * @param isDailyList: to sort the dailyList if 1,
@@ -222,12 +139,12 @@ public class Storage {
 		randomPivot(lowIdx, highIdx, isDailyList);
 		int pivot = -1;
 		int i = -1;
-
+				
 		//DailyList Case:
 		if(isDailyList == 1) {
 			pivot = this.dailyList.get(highIdx).getStationName().charAt(0);
 			i = lowIdx - 1;
-
+			
 			for(int j=lowIdx; j < highIdx; j++) {
 				if(this.dailyList.get(j).getStationName().charAt(0) < pivot) {
 					i++;
@@ -236,7 +153,7 @@ public class Storage {
 					this.dailyList.set(j, temp);
 				}
 			}
-
+			
 			DailyReport temp = this.dailyList.get(i + 1);
 			this.dailyList.set(i + 1, this.dailyList.get(highIdx));
 			this.dailyList.set(highIdx, temp);
@@ -245,7 +162,7 @@ public class Storage {
 		if(isDailyList == 2){
 			pivot = this.monthlyList.get(highIdx).getStationName().charAt(0);
 			i = lowIdx - 1;
-
+			
 			for(int j=lowIdx; j < highIdx; j++) {
 				if(this.monthlyList.get(j).getStationName().charAt(0) < pivot) {
 					i++;
@@ -254,22 +171,22 @@ public class Storage {
 					this.monthlyList.set(j, temp);
 				}
 			}
-
+			
 			MonthlyReport temp = this.monthlyList.get(i + 1);
 			this.monthlyList.set(i + 1, this.monthlyList.get(highIdx));
 			this.monthlyList.set(highIdx, temp);
 		}
 		return i + 1;
 	}
-
+	
 	/**
 	 * @author: Carlos Rodriguez
-	 *
-	 * Evaluates the date of a Report as pivot, sorts all
-	 * the reports in a list basedon partitions (from
-	 * lowest index entered to highest) comparing the values
+	 * 
+	 * Evaluates the date of a Report as pivot, sorts all 
+	 * the reports in a list basedon partitions (from 
+	 * lowest index entered to highest) comparing the values 
 	 * (year, month, day order) with the chosen pivot.
-	 *
+	 * 
 	 * @param lowIdx: lowest index to start the partition.
 	 * @param highIdx: highest index to start the partition.
 	 * @param isDailyList: to sort the dailyList if 1,
@@ -280,7 +197,7 @@ public class Storage {
 		randomPivot(lowIdx, highIdx, isDailyList);
 		int[] pivot = new int[3];
 		int i = -1;
-
+		
 		//DailyList Case:
 		if(isDailyList == 1) {
 			String foundDate[] = this.dailyList.get(highIdx).getData().split("/");
@@ -288,7 +205,7 @@ public class Storage {
 				pivot[k]=Integer.parseInt(foundDate[k]);
 			}
 			i = lowIdx - 1;
-
+			
 			for(int j=lowIdx; j < highIdx; j++) {
 				foundDate = this.dailyList.get(highIdx).getData().split("/");
 				int[] currDate = new int[3];
@@ -298,7 +215,7 @@ public class Storage {
 				//Evaluating based on year (descending year)
 				if(currDate[2] > pivot[2]) {
 					//Evaluating based on month (ascending month)
-					if(currDate[0] > pivot[0])
+					if(currDate[0] > pivot[0]) 
 						//Evaluating based on day (ascending day)
 						if(currDate[1] > pivot[1])
 							i++;
@@ -307,12 +224,12 @@ public class Storage {
 							this.dailyList.set(j, temp);
 				}
 			}
-
+			
 			DailyReport temp = this.dailyList.get(i + 1);
 			this.dailyList.set(i + 1, this.dailyList.get(highIdx));
 			this.dailyList.set(highIdx, temp);
 		}
-
+		
 		//MonthlyList Case
 		if(isDailyList == 2){
 			String foundDate[] = this.monthlyList.get(highIdx).getData().split("/");
@@ -320,7 +237,7 @@ public class Storage {
 				pivot[k]=Integer.parseInt(foundDate[k]);
 			}
 			i = lowIdx - 1;
-
+			
 			for(int j=lowIdx; j < highIdx; j++) {
 				foundDate = this.monthlyList.get(highIdx).getData().split("/");
 				int[] currDate = new int[3];
@@ -330,7 +247,7 @@ public class Storage {
 				//Evaluating based on year
 				if(currDate[2] > pivot[2]) {
 					//Evaluating based on month
-					if(currDate[0] > pivot[0])
+					if(currDate[0] > pivot[0]) 
 						//Evaluating based on day
 						if(currDate[1] > pivot[1])
 							i++;
@@ -338,7 +255,7 @@ public class Storage {
 							this.monthlyList.set(i, this.monthlyList.get(j));
 							this.monthlyList.set(j, temp);
 				}
-			}
+			}	
 			MonthlyReport temp = this.monthlyList.get(i + 1);
 			this.monthlyList.set(i + 1, this.monthlyList.get(highIdx));
 			this.monthlyList.set(highIdx, temp);
