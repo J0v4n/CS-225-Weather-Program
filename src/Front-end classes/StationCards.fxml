@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="260.0" prefWidth="300.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8.0.321" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StationController">
+   <children>
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="450.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Group layoutX="-335.0" layoutY="-188.0">
+               <children>
+                  <Label layoutX="349.0" layoutY="202.0" text="Search Station">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane fx:id="stationName_Display" fitToWidth="true" layoutX="349.0" layoutY="268.0" prefHeight="167.0" prefWidth="277.0">
+                     <content>
+                        <ScrollBar fx:id="stationName_ScrollBar" nodeOrientation="RIGHT_TO_LEFT" opacity="0.91" orientation="VERTICAL" prefHeight="167.0" prefWidth="14.0" snapToPixel="false" style="-fx-background-radius: 20;" />
+      
+                        <Pane id="spane" fx:id="spane" disable="true" mouseTransparent="true" prefHeight="600.0" prefWidth="600">
+
+                        </Pane>
+      
+                     </content>
+      
+                  </ScrollPane>
+                  <TextField id="station_SearchBar" fx:id="station_SearchBar" layoutX="349.0" layoutY="233.0" onAction="#search" onDragOver="#search" onInputMethodTextChanged="#search" onTouchStationary="#search" prefHeight="18.0" prefWidth="277.0" promptText="Enter Text" />
+               </children>
+            </Group>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

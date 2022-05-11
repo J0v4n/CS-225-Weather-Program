@@ -40,7 +40,7 @@ public class FxmlLoader {
          @Override
         public void start(Stage stage) {
             try {
-            Parent root = FXMLLoader.load(getClass().getResource("Map.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("StationCards.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setResizable(false);
