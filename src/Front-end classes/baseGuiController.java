@@ -71,13 +71,9 @@ public class baseGuiController {
         nightMode_Toggle.setText("Dark Mode");
     }
 
-    public void setStationController(StationController stationController) {
-        this.stationController = stationController;
-    }
-
     public void stationSelected(ActionEvent event) throws Exception{
         String station = ((RadioButton) event.getSource()).getText();
-        stationController.setSearch(station);
+        //stationController.setSearch(station);
         
     }
     
