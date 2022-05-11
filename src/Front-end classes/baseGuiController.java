@@ -63,16 +63,17 @@ public class baseGuiController {
        }
     }
     public void setDarkMode(){
-        parentPane.getStylesheets().add("styles/darkMode.css");
+        parentPane.getStylesheets().add("css/darkMode.css");
         nightMode_Toggle.setText("Light Mode");
     }
     public void removeDarkMode(){
-        parentPane.getStylesheets().remove("styles/darkMode.css");
+        parentPane.getStylesheets().remove("css/darkMode.css");
         nightMode_Toggle.setText("Dark Mode");
     }
 
     public void stationSelected(ActionEvent event) throws Exception{
         String station = ((RadioButton) event.getSource()).getText();
+        System.out.println(station);
         //stationController.setSearch(station);
         
     }
