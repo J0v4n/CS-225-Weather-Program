@@ -1,28 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneController">
-   <bottom>
-      <Button fx:id="screen1Button" mnemonicParsing="false" onAction="#setScreen1" text="Screen1" BorderPane.alignment="CENTER" />
-   </bottom>
-   <left>
-      <Button fx:id="pressButton" mnemonicParsing="false" onAction="#helloWorld" text="Press Me" BorderPane.alignment="CENTER" />
-   </left>
-   <top>
-      <Button fx:id="screen2Button" mnemonicParsing="false" onAction="#setScreen2" text="Screen2" BorderPane.alignment="CENTER" />
-   </top>
-   <center>
-      <FlowPane fx:id="mainScreen" maxHeight="350.0" maxWidth="169.0" prefHeight="350.0" prefWidth="169.0" BorderPane.alignment="CENTER" />
-
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.321" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneController">
-   <center>
-      <Button fx:id="pressButton" mnemonicParsing="false" onAction="#helloWorld" text="Press Me" BorderPane.alignment="CENTER" />
-   </center>
-</BorderPane>
+<VBox prefHeight="461.0" prefWidth="631.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGuiController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="487.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
@@ -98,6 +86,7 @@
                   </Label>
                </children>
             </Group>
+            <Group layoutX="-7.0" layoutY="21.0">
             <Group layoutX="-7.0" layoutY="4.0">
                <children>
                   <Label layoutX="349.0" layoutY="202.0" text="Search Station">
@@ -105,6 +94,17 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
+                  <ScrollPane fx:id="stationName_Display" fitToHeight="true" fitToWidth="true" layoutX="349.0" layoutY="268.0" prefHeight="167.0" prefWidth="277.0">
+                     <content>
+                        <ScrollBar fx:id="stationName_ScrollBar" nodeOrientation="RIGHT_TO_LEFT" opacity="0.91" orientation="VERTICAL" prefHeight="167.0" prefWidth="14.0" snapToPixel="false" style="-fx-background-radius: 20;" />
+                     </content>
+                  </ScrollPane>
+                  <TextField fx:id="station_SearchBar" layoutX="349.0" layoutY="233.0" prefHeight="18.0" prefWidth="277.0" promptText="Enter Text" />
+               </children>
+            </Group>
+            <Pane fx:id="cards_Pane" layoutX="14.0" layoutY="217.0" prefHeight="200.0" prefWidth="278.0" style="-fx-background-color: #d7d7d2;" />
+            <Pane fx:id="map_Pane" layoutX="341.0" layoutY="29.0" prefHeight="188.0" prefWidth="278.0" style="-fx-background-color: #d7d7d2;" />
+            <ToggleButton fx:id="nightMode_Toggle" layoutX="14.0" layoutY="422.0" mnemonicParsing="false" prefHeight="9.0" prefWidth="96.0" text="ToggleButton" />
                   <ScrollPane fx:id="stationName_Display" fitToWidth="true" layoutX="349.0" layoutY="268.0" prefHeight="167.0" prefWidth="277.0">
                      <content>
                         <ScrollBar fx:id="stationName_ScrollBar" nodeOrientation="RIGHT_TO_LEFT" opacity="0.91" orientation="VERTICAL" prefHeight="167.0" prefWidth="14.0" snapToPixel="false" style="-fx-background-radius: 20;"/>
