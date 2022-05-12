@@ -33,7 +33,11 @@ public class dailyViewController implements Initializable {
         maxWindDisplay.setEditable(false);
         precipitationDisplay.setEditable(false);
 
+        avgWindDisplay.setStyle("-fx-font-size: 2.5em;");
+        maxWindDisplay.setStyle("-fx-font-size: 2.5em;");
+        precipitationDisplay.setStyle("-fx-font-size: 2.5em;");
 
+        //testDisplay(); //Used to test the display
 
     }
 
@@ -59,6 +63,31 @@ public class dailyViewController implements Initializable {
     public String getDate(){
         //System.out.println(dailyDateSelector.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"))); used to test what the output was for the date
         return dailyDateSelector.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+    }
+
+    //Used to set the display for the average wind
+    public void setAvgWindDisplay(Double avgWind){
+        avgWindDisplay.setText("");
+        avgWindDisplay.setText(Double.toString(avgWind));
+    }
+
+    //Used to set the max wind display
+    public void setMaxWindDisplay(Double maxWind){
+        maxWindDisplay.setText("");
+        maxWindDisplay.setText(Double.toString(maxWind));
+    }
+
+    //used to set the precipitation display
+    public void setPrecipitationDisplay(Double precipitation){
+        precipitationDisplay.setText("");
+        precipitationDisplay.setText(Double.toString(precipitation));
+    }
+
+    //method to test each displays to make sure they are working properly
+    public void testDisplay(){
+        setAvgWindDisplay(10.0);
+        setMaxWindDisplay(10.1);
+        setPrecipitationDisplay(10.2);
     }
 
 
