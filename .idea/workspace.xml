@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b154b5bd-3dc4-4f6f-af27-b866fe1c06df" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Weather_Data.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Weather_Data1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CS-225-Weather-Program1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/Front-end classes/dailyView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/baseGuiController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Front-end classes/dailyView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Front-end classes/dailyView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Back-end classes/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Back-end classes/Storage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Front-end classes/Map.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Front-end classes/Map.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Front-end classes/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Front-end classes/MapController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Front-end classes/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Front-end classes/StationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Front-end classes/WeatherUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Front-end classes/WeatherUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Front-end classes/baseGuiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Front-end classes/baseGuiController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +41,23 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.dailyViewTester">
+  <component name="RunManager" selected="Application.WeatherUITester">
     <configuration name="Tester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Tester" />
       <module name="CS-225-Weather-Program" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WeatherUITester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="WeatherUITester" />
+      <module name="CS-225-Weather-Program1" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -52,6 +71,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.WeatherUITester" />
         <item itemvalue="Application.dailyViewTester" />
         <item itemvalue="Application.Tester" />
       </list>
@@ -67,5 +87,17 @@
       <updated>1652109809713</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

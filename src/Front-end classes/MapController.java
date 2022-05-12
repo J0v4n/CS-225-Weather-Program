@@ -26,11 +26,11 @@ public class MapController implements Initializable{
 	}
 
    
- 
-    public String stationSelected(ActionEvent event) {
-        // System.out.println(event);
-        // System.out.println(((RadioButton) event.getSource()).getText());
-        return ((RadioButton) event.getSource()).getText();
-    }
+
+   public String stationSelected(ActionEvent event) {
+       // System.out.println(event);
+       // System.out.println(((RadioButton) event.getSource()).getText());
+       return ((RadioButton) event.getSource()).getText();
+   }
     
 }

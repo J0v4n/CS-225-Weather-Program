@@ -9,17 +9,9 @@ import java.util.stream.Collectors;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollBar;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 
@@ -56,36 +48,33 @@ public class StationController implements Initializable{
 
 	    @FXML
 	    private TextField station_SearchBar;
-
-
+	    
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
-    	
-    	
-    	 
-    	
+
+
     	 list.getItems().addAll(words);
 
 
     	    stationName_Display.setContent(list);
-
-    	 
-    	    
-        
 	}
+
+	public StationController(){
+    	station_SearchBar = new TextField();
+	}
+
+
     @FXML
     public void search(ActionEvent event) throws Exception {
         list.getItems().clear();
         list.getItems().addAll(searchList(station_SearchBar.getText(),words));
-		
     }
 
 	//christian
 	public void setSearch(String station) throws Exception {
-		// list.getItems().clear();
-		// station_SearchBar.setText(station);
-        // list.getItems().addAll(searchList(station,words));
-		System.out.print("bruh");
+		list.getItems().clear();
+		station_SearchBar.setText(station);
+        list.getItems().addAll(searchList(station,words));
 	}
 
     @FXML

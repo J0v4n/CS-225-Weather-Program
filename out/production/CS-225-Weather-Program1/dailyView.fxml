@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/8.0.321" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Line endX="211.0" layoutX="136.0" layoutY="55.0" startX="-115.5" />
+      <Label layoutX="20.0" layoutY="20.0" text="Selected Date">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dailyDateSelector" layoutX="126.0" layoutY="18.0" promptText="Select a Date" />
+      <VBox layoutX="20.0" layoutY="81.0" prefHeight="200.0" prefWidth="422.0" style="-fx-background-color: white;">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green;">
+               <children>
+                  <Label text="Average Wind Speed: " textFill="WHITE">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="avgWindDisplay" prefHeight="38.0" prefWidth="91.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: orange;">
+               <children>
+                  <Label text="Maximum Wind Speed:" textFill="WHITE">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="maxWindDisplay" prefHeight="38.0" prefWidth="91.0" translateX="4.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: purple;">
+               <children>
+                  <Label text="Precipitation: " textFill="WHITE">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="precipitationDisplay" prefHeight="38.0" prefWidth="91.0" translateX="104.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
