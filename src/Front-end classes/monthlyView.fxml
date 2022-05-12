@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="mainMonthlyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="444.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="monthlyViewController">
+   <children>
+      <Line endX="211.0" layoutX="130.0" layoutY="74.0" startX="-115.5" />
+      <VBox layoutX="3.0" layoutY="81.0" prefHeight="182.0" prefWidth="438.0" style="-fx-background-color: white;">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;">
+               <children>
+                  <Label text="Average Temperature: " textFill="WHITE">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="avgTempDisplay" prefHeight="38.0" prefWidth="91.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: orange;">
+               <children>
+                  <Label text="Max Temperature: " textFill="WHITE">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="maxTempDisplay" prefHeight="38.0" prefWidth="91.0" translateX="75.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: darkslateblue;">
+               <children>
+                  <Label text="Minimum temperature: " textFill="WHITE">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="minTempDisplay" prefHeight="38.0" prefWidth="91.0" translateX="17.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="438.0" style="-fx-background-color: purple;">
+               <children>
+                  <Label text="Precipitation: " textFill="WHITE">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="precipitationDisplay" prefHeight="38.0" prefWidth="91.0" translateX="114.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="31.0" layoutY="8.0" prefHeight="66.0" prefWidth="306.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Month:" />
+                  <ChoiceBox fx:id="monthSelector" prefWidth="150.0" translateX="67.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Temperature Unit:" />
+                  <ChoiceBox fx:id="temperatureSelector" prefWidth="150.0" translateX="10.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</Pane>
