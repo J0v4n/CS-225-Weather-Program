@@ -29,111 +29,118 @@ import javafx.scene.layout.Pane;
 /**
  * Responsible for controlling the main UI elements of the Simulation
  */
+
+
+/**
+ * ArrayList of Strings station names by Yuliia
+ */
 public class SceneController implements Initializable{
-	 ArrayList<String> words = new ArrayList<>(
-	            Arrays.asList("ANDOVER 0.6 E, MA, US\n 2021-03-21\n", "WORCESTER 0.6 E, MA, US\n 2021-03-21\n", "BOSTON 0.6 E, MA, US\n 2021-03-21\n")
-	    );
-	  @FXML
-	    private Pane cards_Pane;
-	  ListView<String> list = new ListView<>();
+	static ArrayList<String> words = new ArrayList<>(
+			Arrays.asList("ANDOVER 0.6 E, MA, US\n 2021-03-21\n", "WORCESTER 0.6 E, MA, US\n 2021-03-21\n", "BOSTON 0.6 E, MA, US\n 2021-03-21\n")
+	);
+	@FXML
+	private Pane cards_Pane;
+	ListView<String> list = new ListView<>();
 
-	    @FXML
-	    private MenuItem celsius_Option;
+	@FXML
+	private MenuItem celsius_Option;
 
-	    @FXML
-	    private MenuItem fahrenheit_Option;
+	@FXML
+	private MenuItem fahrenheit_Option;
 
-	    @FXML
-	    private MenuItem kelvin_Option;
+	@FXML
+	private MenuItem kelvin_Option;
 
-	    @FXML
-	    private Pane map_Pane;
+	@FXML
+	private Pane map_Pane;
 
-	    @FXML
-	    private Separator separator_Dash;
+	@FXML
+	private Separator separator_Dash;
 
-	    @FXML
-	    private MenuItem sortBy_Date;
+	@FXML
+	private MenuItem sortBy_Date;
 
-	    @FXML
-	    private MenuItem sortBy_Date1;
+	@FXML
+	private MenuItem sortBy_Date1;
 
-	    @FXML
-	    private SplitMenuButton sortBy_DropDown;
+	@FXML
+	private SplitMenuButton sortBy_DropDown;
 
-	    @FXML
-	    private Label sortBy_Label;
-	    Label l=new Label("heis");
-	    Label l1=new Label("jeis");
-	    Label l2=new Label("hes");
-	    
-	    @FXML
-	    private MenuItem sortBy_Month;
+	@FXML
+	private Label sortBy_Label;
+	Label l=new Label("heis");
+	Label l1=new Label("jeis");
+	Label l2=new Label("hes");
 
-	    @FXML
-	    private MenuItem sortBy_Month1;
+	@FXML
+	private MenuItem sortBy_Month;
 
-	    @FXML
-	    private SplitMenuButton sortedBy_DropDown;
+	@FXML
+	private MenuItem sortBy_Month1;
 
-	    @FXML
-	    private Label sorted_Label;
+	@FXML
+	private SplitMenuButton sortedBy_DropDown;
 
-	    @FXML
-	    private Pane spane;
+	@FXML
+	private Label sorted_Label;
 
-	    @FXML
-	    private Label static_StationLabel;
+	@FXML
+	private Pane spane;
 
-	    @FXML
-	    private ScrollPane stationName_Display;
+	@FXML
+	private Label static_StationLabel;
 
-	    @FXML
-	    private ScrollBar stationName_ScrollBar;
+	@FXML
+	private ScrollPane stationName_Display;
 
-	    @FXML
-	    private Label station_Name;
+	@FXML
+	private ScrollBar stationName_ScrollBar;
 
-	    @FXML
-	    private TextField station_SearchBar;
+	@FXML
+	private Label station_Name;
 
-	    @FXML
-	    private SplitMenuButton unit_DropDown;
+	@FXML
+	private TextField station_SearchBar;
 
-	    @FXML
-	    private Label unit_Label;
+	@FXML
+	private SplitMenuButton unit_DropDown;
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1){
-    	
-    	
-    	 
-    	
-    	 list.getItems().addAll(words);
+	@FXML
+	private Label unit_Label;
 
+	 /**
+	  * display stationNames by Yuliia Synytska
+	 */
 
-    	    stationName_Display.setContent(list);
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1){
 
-    	 
-    	    
-        
+		list.getItems().addAll(words);
+		stationName_Display.setContent(list);
+		Queries.w=words;
+
 	}
-    @FXML
-    void search(ActionEvent event) throws Exception {
-        list.getItems().clear();
-        list.getItems().addAll(searchList(station_SearchBar.getText(),words));
-    }
-    @FXML
-    public List<String> searchList(String searchWords, List<String> listOfStrings) throws Exception{
 
-        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+	/**
+	 * searching stations by Yuliia Synytska
+	 */
+	@FXML
+	void search(ActionEvent event) throws Exception {
+		list.getItems().clear();
+		list.getItems().addAll(searchList(station_SearchBar.getText(),words));
+		System.out.println(searchList(station_SearchBar.getText(),words));
+	}
+	@FXML
+	public List<String> searchList(String searchWords, List<String> listOfStrings) throws Exception{
 
-        return listOfStrings.stream().filter(input -> {
-            return searchWordsArray.stream().allMatch(word ->
-                    input.toLowerCase().contains(word.toLowerCase()));
-        }).collect(Collectors.toList());
-    }
-	
- 
-    
+		List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+
+		return listOfStrings.stream().filter(input -> {
+			return searchWordsArray.stream().allMatch(word ->
+					input.toLowerCase().contains(word.toLowerCase()));
+		}).collect(Collectors.toList());
+	}
+
+
+
 }
