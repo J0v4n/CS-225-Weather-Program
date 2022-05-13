@@ -56,15 +56,15 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="31.0" layoutY="8.0" prefHeight="66.0" prefWidth="306.0">
+      <VBox layoutX="31.0" layoutY="8.0" prefHeight="66.0" prefWidth="272.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="100.0" prefWidth="320.0">
                <children>
                   <Label text="Month:" />
                   <ChoiceBox fx:id="monthSelector" prefWidth="150.0" translateX="67.0" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="100.0" prefWidth="264.0">
                <children>
                   <Label text="Temperature Unit:" />
                   <ChoiceBox fx:id="temperatureSelector" prefWidth="150.0" translateX="10.0" />
@@ -72,5 +72,11 @@
             </HBox>
          </children>
       </VBox>
+      <HBox layoutX="291.0" layoutY="29.0" prefHeight="25.0" prefWidth="150.0">
+         <children>
+            <Label text="Year: " />
+            <ChoiceBox fx:id="yearSelector" prefHeight="25.0" prefWidth="109.0" translateX="10.0" />
+         </children>
+      </HBox>
    </children>
 </Pane>

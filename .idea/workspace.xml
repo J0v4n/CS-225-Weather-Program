@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b154b5bd-3dc4-4f6f-af27-b866fe1c06df" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Front-end classes/monthlyView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Front-end classes/monthlyView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Front-end classes/monthlyViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Front-end classes/monthlyViewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
