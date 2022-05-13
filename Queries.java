@@ -267,8 +267,8 @@ public class Queries {
 	 * @author: Carlos Rodriguez
 	 * 
 	 * Linearly searches for all available years.
-	 * @return = List of String type with the years. */
-	public List<String> allAvailableYears(){
+	 * @return = array of String type with the years. */
+	public String[] allAvailableYears(){
 		List<String> allYears = new ArrayList<String>();
 		String[] split = this.m.get(0).getDate().split("/"); 
 		allYears.add(split[2]);
@@ -278,6 +278,11 @@ public class Queries {
  				allYears.add(split[2]);
  			}
 		}
-		return Collections.unmodifiableList(allYears);
+ 		
+ 		String[] foundYear = new String[allYears.size()];
+ 		for(int i=0; i < foundYear.length; i++) {
+ 			foundYear[i] = allYears.get(i);
+ 		}
+		return foundYear;
 	}
 }
