@@ -29,9 +29,9 @@ public class DailyReport {
     public String getDailyStationName(){
         return dailyStationName;
     }
-    private double getDailyAverageWindSpeed(){return dailyAverageWindSpeed;}
-    private double getDailyMaxWindSpeed(){return dailyMaxWindSpeed;}
-    private double getDailyPrecipitation(){return dailyPrecipitation;}
+    public double getDailyAverageWindSpeed(){return dailyAverageWindSpeed;}
+    public double getDailyMaxWindSpeed(){return dailyMaxWindSpeed;}
+    public double getDailyPrecipitation(){return dailyPrecipitation;}
 
     @Override
     public boolean equals(Object o) {
