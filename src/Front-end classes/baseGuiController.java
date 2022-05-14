@@ -25,10 +25,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Node;
-
 public class baseGuiController implements Initializable {
-    //Alland Timas create variable references to fxml components
+	//Alland Timas create variable references to fxml components
     @FXML
     private Label sorted_Label, unit_Label, sortBy_Label,static_StationLabel, station_Name;
 
@@ -63,12 +61,11 @@ public class baseGuiController implements Initializable {
     @FXML
     private StationController stationController;
     
-    //Modified by Carlos Rodriguez
     @FXML
     private monthlyViewController mView;
+    
     @FXML
     private dailyViewController dView;
-    
     //
     //alland timas
     @FXML
@@ -122,7 +119,7 @@ public class baseGuiController implements Initializable {
         stationController = new StationController();
         mapController = new MapController();
         //Modified by Carlos Rodriguez
-        mView = new monthlyViewController();
+        mView = new monthlyViewController(this.queries.allAvailableYears());
         dView = new dailyViewController();
         //
         list.getItems().addAll(words);
@@ -134,9 +131,10 @@ public class baseGuiController implements Initializable {
         stationController = new StationController();
         mapController = new MapController();
         station_SearchBar = new TextField();
+        mView = new monthlyViewController(this.queries.allAvailableYears());
+        dView = new dailyViewController();
     }
-
-//Created by alland timas, uses darkMode.css to swap between the light mode and dark mode.
+  //Created by alland timas, uses darkMode.css to swap between the light mode and dark mode.
     public void swapColorModes(ActionEvent event){
       isLightMode = !isLightMode;
        if(isLightMode){
@@ -146,12 +144,11 @@ public class baseGuiController implements Initializable {
            setDarkMode();
        }
     }
-    //alland timas
+    
     public void setDarkMode(){
         parentPane.getStylesheets().add("css/darkMode.css");
         nightMode_Toggle.setText("Light Mode");
     }
-    //alland timas
     public void removeDarkMode(){
         parentPane.getStylesheets().remove("css/darkMode.css");
         nightMode_Toggle.setText("Dark Mode");
@@ -166,49 +163,31 @@ public class baseGuiController implements Initializable {
     
     //Search Report button
     public void searchReport(ActionEvent evt) {
-    	if(!this.selectedMonth.equals("") && !this.selectedStation.equals("")) {
-    		if(this.sortBy.equals("MONTHLY")) {
-    			if(!this.selectedYear.equals("")) {
-    				MonthlyReport aRep = queries.getSpecificMonthlyReport(this.selectedStation, this.selectedMonth, this.selectedYear);
-        	        if(aRep == null) {
-        	        	Alert notFound = new Alert(AlertType.INFORMATION);
-        	    		notFound.setContentText("No report found for given date.");
-        	        }
-        	        else {
-        	        	mView.setAvgTempDisplay(aRep.getmonthlymonthlyAvgTemp());
-            	        mView.setMaxTempDisplay(aRep.getmonthlymonthlyMaxTemp());
-            	        mView.setMinTempDisplay(aRep.getmonthlymonthlyMinTemp());
-            	        mView.setPrecipitationDisplay(aRep.getmonthlymonthlyTotalPrecipitation());
-        	        }
-    			}
-    		}
-    		if(this.sortBy.equals("DAILY")) {
-    			DailyReport aRep = queries.getSpecificDailyReport(this.selectedStation, dView.getDate());
-    			 if(aRep == null) {
-     	        	Alert notFound = new Alert(AlertType.INFORMATION);
-     	    		notFound.setContentText("No report found for given date.");
-     	        }
-    			else {
-    				dView.setAvgWindDisplay(aRep.getDailyAverageWindSpeed());
-        	        dView.setMaxWindDisplay(aRep.getDailyMaxWindSpeed());
-        	        dView.setPrecipitationDisplay(aRep.getDailyPrecipitation());
-    			}
-    		}
-    	}
-    	else {
-    		Alert notFound = new Alert(AlertType.WARNING);
-    		notFound.setContentText("Report can't be found.\nPlease check the criteria entered!");
-    	}
+    		if(!selectedStation.isEmpty()) {
+        		System.out.println(selectedStation);
+        		if(this.sortBy.equals("MONTHLY")) {
+        			//Report object goes here
+        			System.out.println(this.mView.getMonth());
+        				this.mView.setAvgTempDisplay(-1.0);
+        				this.mView.setMaxTempDisplay(-1.0);
+        				this.mView.setMinTempDisplay(-1.0);
+        				this.mView.setPrecipitationDisplay(-1.0);
+        				
+        			
+        			
+        		}
+        		if(this.sortBy.equals("DAILY")) {
+        			System.out.println("daily");
+        		}
+        	}
     }
     
     //SortBy Split Menu search for methods
     public void searchMonthly() throws IOException {
         this.sortBy = "MONTHLY";
-
-
         try {
             Node node;
-            node = (Node)FXMLLoader.load(getClass().getResource("monthlyView.fxml"));
+            node = FXMLLoader.load((getClass().getResource("monthlyView.fxml")));
             dataPane.getChildren().setAll(node);
 
         } catch (IOException e) {
@@ -217,10 +196,9 @@ public class baseGuiController implements Initializable {
     }
     public void searchDaily(ActionEvent event) {
         this.sortBy = "DAILY";
-
         try {
-            Node node;
-            node = (Node)FXMLLoader.load(getClass().getResource("dailyView.fxml"));
+        	Node node;
+            node = FXMLLoader.load((getClass().getResource("dailyView.fxml")));
             dataPane.getChildren().setAll(node);
 
         } catch (IOException e) {
