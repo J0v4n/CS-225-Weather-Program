@@ -130,7 +130,7 @@
                   <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="258.0" layoutY="174.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="WORCESTER" toggleGroup="$station" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="460.0">
+            <AnchorPane fx:id="dataPane" layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="460.0">
                <children>
                   <Line endX="211.0" layoutX="136.0" layoutY="55.0" startX="-115.5" />
                   <Label layoutX="20.0" layoutY="20.0" text="Selected Date">

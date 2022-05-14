@@ -199,8 +199,29 @@ public class baseGuiController implements Initializable {
     //SortBy Split Menu search for methods
     public void searchMonthly() throws IOException {
         this.sortBy = "MONTHLY";
+
+
+        try {
+            Node node;
+            node = (Node)FXMLLoader.load(getClass().getResource("monthlyView.fxml"));
+            dataPane.getChildren().setAll(node);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    public void searchDaily(ActionEvent event) {this.sortBy = "DAILY";}
+    public void searchDaily(ActionEvent event) {
+        this.sortBy = "DAILY";
+
+        try {
+            Node node;
+            node = (Node)FXMLLoader.load(getClass().getResource("dailyView.fxml"));
+            dataPane.getChildren().setAll(node);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
     //SortedBy Split Menu month methods
     public void setMonthJan() {this.selectedMonth = "JANUARY";}
