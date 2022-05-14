@@ -1,3 +1,6 @@
+/*Created by: Alland Timas 
+This class is used to swap the color palette to a darker theme to be easier on the eyes
+To be used with baseGuiController to modify WeatherUI.fxml*/
 .root { 
     -fx-accent: #1e74c6;
     -fx-focus-color: -fx-accent;

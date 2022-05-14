@@ -1,4 +1,7 @@
-
+/**
+ * @author Alland Timas
+ *This class controls the overall weatherUI
+ */
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +28,7 @@ import java.util.stream.Collectors;
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Node;
 
 public class baseGuiController implements Initializable {
-    
+    //Alland Timas create variable references to fxml components
     @FXML
     private Label sorted_Label, unit_Label, sortBy_Label,static_StationLabel, station_Name;
 
@@ -67,7 +70,7 @@ public class baseGuiController implements Initializable {
     private dailyViewController dView;
     
     //
-    
+    //alland timas
     @FXML
     private TextField searchBar;
 
@@ -133,6 +136,7 @@ public class baseGuiController implements Initializable {
         station_SearchBar = new TextField();
     }
 
+//Created by alland timas, uses darkMode.css to swap between the light mode and dark mode.
     public void swapColorModes(ActionEvent event){
       isLightMode = !isLightMode;
        if(isLightMode){
@@ -142,11 +146,12 @@ public class baseGuiController implements Initializable {
            setDarkMode();
        }
     }
-    
+    //alland timas
     public void setDarkMode(){
         parentPane.getStylesheets().add("css/darkMode.css");
         nightMode_Toggle.setText("Light Mode");
     }
+    //alland timas
     public void removeDarkMode(){
         parentPane.getStylesheets().remove("css/darkMode.css");
         nightMode_Toggle.setText("Dark Mode");
