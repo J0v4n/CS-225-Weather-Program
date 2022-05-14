@@ -43,7 +43,7 @@
                         <Font name="Nirmala UI" size="19.0" />
                      </font>
                   </Label>
-                  <SplitMenuButton fx:id="sortBy_DropDown" layoutX="99.0" layoutY="116.0" mnemonicParsing="false" onAction="#searchMonthly" text="Sort By">
+                  <SplitMenuButton fx:id="sortBy_DropDown" layoutX="99.0" layoutY="116.0" mnemonicParsing="false" text="Sort By">
                      <items>
                         <MenuItem id="showMonth" fx:id="sortBy_Month" mnemonicParsing="false" onAction="#searchMonthly" text="Month" />
                         <MenuItem fx:id="sortBy_Date" mnemonicParsing="false" onAction="#searchDaily" text="Date" />
@@ -175,7 +175,6 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <fx:include layoutX="470.0" layoutY="390.0" source="StationCards.fxml" />
             <TextField fx:id="searchBar" layoutX="482.0" layoutY="401.0" onAction="#expSearch" prefHeight="25.0" prefWidth="480.0" />
             <ScrollPane fx:id="scroller" layoutX="482.0" layoutY="426.0" prefHeight="214.0" prefWidth="480.0">
               <content>

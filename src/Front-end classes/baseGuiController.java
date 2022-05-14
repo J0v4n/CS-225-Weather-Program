@@ -2,18 +2,27 @@
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Node;
 
 public class baseGuiController implements Initializable {
     
@@ -64,6 +73,9 @@ public class baseGuiController implements Initializable {
 
     @FXML
     private ScrollPane scroller;
+
+    @FXML
+    private AnchorPane dataPane;
 
     ListView<String> list = new ListView<>();
 
@@ -185,8 +197,10 @@ public class baseGuiController implements Initializable {
     }
     
     //SortBy Split Menu search for methods
-    public void searchMonthly() {this.sortBy = "MONTHLY";}
-    public void searchDaily() {this.sortBy = "DAILY";}
+    public void searchMonthly() throws IOException {
+        this.sortBy = "MONTHLY";
+    }
+    public void searchDaily(ActionEvent event) {this.sortBy = "DAILY";}
     
     //SortedBy Split Menu month methods
     public void setMonthJan() {this.selectedMonth = "JANUARY";}

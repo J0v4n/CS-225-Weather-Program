@@ -30,8 +30,8 @@ public class Storage {
 		this.monthlyList = new ArrayList<MonthlyReport>();
 		this.dailyList = new ArrayList<DailyReport>();
 		try {
-			readCSV(new FileReader("All Daily Data.csv"), 1);
-			readCSV(new FileReader("All Monthly Data.csv"), 2);
+			readCSV(new FileReader("src/All Daily Data.csv"), 1);
+			readCSV(new FileReader("src/All Monthly Data.csv"), 2);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

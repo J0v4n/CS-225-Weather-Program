@@ -22,6 +22,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.ChoiceBox?>
 <VBox fx:id="parentPane" prefHeight="652.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGuiController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="652.0" prefWidth="968.0" VBox.vgrow="ALWAYS">
@@ -130,49 +131,75 @@
                   <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="258.0" layoutY="174.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="WORCESTER" toggleGroup="$station" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dataPane" layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="460.0">
+            <AnchorPane layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="460.0">
                <children>
-                  <Line endX="211.0" layoutX="136.0" layoutY="55.0" startX="-115.5" />
-                  <Label layoutX="20.0" layoutY="20.0" text="Selected Date">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <DatePicker fx:id="dailyDateSelector" layoutX="126.0" layoutY="18.0" promptText="Select a Date" />
-                  <VBox layoutX="20.0" layoutY="81.0" prefHeight="200.0" prefWidth="422.0" style="-fx-background-color: white;">
+                  <Line endX="211.0" layoutX="130.0" layoutY="74.0" startX="-115.5" />
+                  <VBox layoutX="3.0" layoutY="81.0" prefHeight="182.0" prefWidth="438.0" style="-fx-background-color: white;">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green;">
+                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;">
                            <children>
-                              <Label text="Average Wind Speed: " textFill="WHITE">
+                              <Label text="Average Temperature: " textFill="WHITE">
                                  <font>
                                     <Font size="33.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="avgWindDisplay" prefHeight="38.0" prefWidth="91.0" />
+                              <TextArea fx:id="avgTempDisplay" prefHeight="38.0" prefWidth="91.0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: orange;">
                            <children>
-                              <Label text="Maximum Wind Speed:" textFill="WHITE">
+                              <Label text="Max Temperature: " textFill="WHITE">
                                  <font>
                                     <Font size="31.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="maxWindDisplay" prefHeight="38.0" prefWidth="91.0" translateX="4.0" />
+                              <TextArea fx:id="maxTempDisplay" prefHeight="38.0" prefWidth="91.0" translateX="75.0" />
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: purple;">
+                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: darkslateblue;">
+                           <children>
+                              <Label text="Minimum temperature: " textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="minTempDisplay" prefHeight="38.0" prefWidth="91.0" translateX="17.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="438.0" style="-fx-background-color: purple;">
                            <children>
                               <Label text="Precipitation: " textFill="WHITE">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="precipitationDisplay" prefHeight="38.0" prefWidth="91.0" translateX="104.0" />
+                              <TextArea fx:id="precipitationDisplay" prefHeight="38.0" prefWidth="91.0" translateX="114.0" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
+                  <VBox layoutX="31.0" layoutY="8.0" prefHeight="66.0" prefWidth="272.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="320.0">
+                           <children>
+                              <Label text="Month:" />
+                              <ChoiceBox fx:id="monthSelector" prefWidth="150.0" translateX="67.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="264.0">
+                           <children>
+                              <Label text="Temperature Unit:" />
+                              <ChoiceBox fx:id="temperatureSelector" prefWidth="150.0" translateX="10.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox layoutX="291.0" layoutY="29.0" prefHeight="25.0" prefWidth="150.0">
+                     <children>
+                        <Label text="Year: " />
+                        <ChoiceBox fx:id="yearSelector" prefHeight="25.0" prefWidth="109.0" translateX="10.0" />
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
             <TextField fx:id="searchBar" layoutX="482.0" layoutY="401.0" onAction="#expSearch" prefHeight="25.0" prefWidth="480.0" />
