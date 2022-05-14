@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
@@ -42,10 +43,10 @@
                         <Font name="Nirmala UI" size="19.0" />
                      </font>
                   </Label>
-                  <SplitMenuButton fx:id="sortBy_DropDown" layoutX="99.0" layoutY="116.0" mnemonicParsing="false" text="Sort By">
+                  <SplitMenuButton fx:id="sortBy_DropDown" layoutX="99.0" layoutY="116.0" mnemonicParsing="false" onAction="#searchMonthly" text="Sort By">
                      <items>
-                        <MenuItem fx:id="sortBy_Month" mnemonicParsing="false" text="Month" />
-                        <MenuItem fx:id="sortBy_Date" mnemonicParsing="false" text="Date" />
+                        <MenuItem id="showMonth" fx:id="sortBy_Month" mnemonicParsing="false" onAction="#searchMonthly" text="Month" />
+                        <MenuItem fx:id="sortBy_Date" mnemonicParsing="false" onAction="#searchDaily" text="Date" />
                      </items>
                      <font>
                         <Font size="14.0" />
@@ -56,8 +57,18 @@
                         <Font size="14.0" />
                      </font>
                      <items>
-                        <MenuItem fx:id="sortBy_Month1" mnemonicParsing="false" text="Month" />
-                        <MenuItem fx:id="sortBy_Date1" mnemonicParsing="false" text="Date" />
+                        <MenuItem fx:id="sortBy_Month1" mnemonicParsing="false" onAction="#setMonthJan" text="JANUARY" />
+                        <MenuItem fx:id="sortBy_Date1" mnemonicParsing="false" onAction="#setMonthFeb" text="FEBRUARY" />
+                        <MenuItem fx:id="sortBy_Month11" mnemonicParsing="false" onAction="#setMonthMar" text="MARCH" />
+                        <MenuItem fx:id="sortBy_Date11" mnemonicParsing="false" onAction="#setMonthApr" text="APRIL" />
+                        <MenuItem fx:id="sortBy_Month12" mnemonicParsing="false" onAction="#setMonthMay" text="MAY" />
+                        <MenuItem fx:id="sortBy_Date12" mnemonicParsing="false" onAction="#setMonthJun" text="JUNE" />
+                        <MenuItem fx:id="sortBy_Month13" mnemonicParsing="false" onAction="#setMonthJul" text="JULY" />
+                        <MenuItem fx:id="sortBy_Date13" mnemonicParsing="false" onAction="#setMonthAug" text="AUGUST" />
+                        <MenuItem fx:id="sortBy_Month111" mnemonicParsing="false" onAction="#setMonthSep" text="SEPTEMBER" />
+                        <MenuItem fx:id="sortBy_Date111" mnemonicParsing="false" onAction="#setMonthOct" text="OCTOBER" />
+                        <MenuItem fx:id="sortBy_Month121" mnemonicParsing="false" onAction="#setMonthNov" text="NOVEMBER" />
+                        <MenuItem fx:id="sortBy_Date121" mnemonicParsing="false" onAction="#setMonthDec" text="DECEMBER" />
                      </items>
                   </SplitMenuButton>
                   <SplitMenuButton fx:id="unit_DropDown" layoutX="77.0" layoutY="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Temperature">
@@ -78,7 +89,7 @@
                   </Label>
                   <Label fx:id="station_Name" layoutX="24.0" layoutY="35.0" text="Station Name" textFill="#2894bf">
                      <font>
-                        <Font name="Nirmala UI" size="24.0" />
+                        <Font name="Nirmala UI" size="18.0" />
                      </font>
                   </Label>
                </children>
@@ -105,7 +116,7 @@
                   <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="280.0" layoutY="97.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="FITCHBURG" toggleGroup="$station" />
                   <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="488.0" layoutY="291.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="HYANNIS" toggleGroup="$station" />
                   <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="491.0" layoutY="353.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#stationSelected" styleClass="station-button" text="NANTUCKET" toggleGroup="$station" />
-                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="368.0" layoutY="52.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="LAWARENCE" toggleGroup="$station" />
+                  <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="368.0" layoutY="52.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="LAWRENCE" toggleGroup="$station" />
                   <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="392.0" layoutY="264.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="NEW BEDFORD" toggleGroup="$station" />
                   <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="50.0" layoutY="75.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="NORTH ADAMS" toggleGroup="$station" />
                   <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="377.0" layoutY="188.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="NORWOOD" toggleGroup="$station" />
@@ -168,9 +179,10 @@
             <TextField fx:id="searchBar" layoutX="482.0" layoutY="401.0" onAction="#expSearch" prefHeight="25.0" prefWidth="480.0" />
             <ScrollPane fx:id="scroller" layoutX="482.0" layoutY="426.0" prefHeight="214.0" prefWidth="480.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="477.0" />
               </content>
             </ScrollPane>
+            <Button layoutX="174.0" layoutY="599.0" mnemonicParsing="false" onAction="#searchReport" text="Search Report" />
          </children>
     </AnchorPane>
   </children>
