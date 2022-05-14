@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -75,7 +76,10 @@ public class baseGuiController implements Initializable {
     private ScrollPane scroller;
 
     @FXML
-    private AnchorPane dataPane;
+    private AnchorPane dailyView, monthlyView;
+
+    @FXML
+    private DatePicker dateSelector;
 
     ListView<String> list = new ListView<>();
 
@@ -120,11 +124,21 @@ public class baseGuiController implements Initializable {
         mapController = new MapController();
         //Modified by Carlos Rodriguez
         mView = new monthlyViewController(this.queries.allAvailableYears());
-        dView = new dailyViewController();
+
         //
         list.getItems().addAll(words);
         //this.stationName_Display.setContent(list);
         scroller.setContent(list);
+
+
+        try {
+            monthlyView.getChildren().setAll((Node)FXMLLoader.load(getClass().getResource("monthlyView.fxml")));
+            dailyView.getChildren().setAll((Node)FXMLLoader.load(getClass().getResource("dailyView.fxml")));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public baseGuiController(){
@@ -133,6 +147,7 @@ public class baseGuiController implements Initializable {
         station_SearchBar = new TextField();
         mView = new monthlyViewController(this.queries.allAvailableYears());
         dView = new dailyViewController();
+        dateSelector = new DatePicker();
     }
   //Created by alland timas, uses darkMode.css to swap between the light mode and dark mode.
     public void swapColorModes(ActionEvent event){
@@ -163,7 +178,7 @@ public class baseGuiController implements Initializable {
     
     //Search Report button
     public void searchReport(ActionEvent evt) {
-    		if(!selectedStation.isEmpty()) {
+    		/*if(!selectedStation.isEmpty()) {
         		System.out.println(selectedStation);
         		if(this.sortBy.equals("MONTHLY")) {
         			//Report object goes here
@@ -179,31 +194,34 @@ public class baseGuiController implements Initializable {
         		if(this.sortBy.equals("DAILY")) {
         			System.out.println("daily");
         		}
-        	}
+        	}*/
+
+        System.out.println(dateSelector.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
+        dView.setPrecipitationDisplay(10.0);
     }
     
     //SortBy Split Menu search for methods
     public void searchMonthly() throws IOException {
         this.sortBy = "MONTHLY";
-        try {
+        /*try {
             Node node;
             node = FXMLLoader.load((getClass().getResource("monthlyView.fxml")));
             dataPane.getChildren().setAll(node);
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
     public void searchDaily(ActionEvent event) {
         this.sortBy = "DAILY";
-        try {
+        /*try {
         	Node node;
             node = FXMLLoader.load((getClass().getResource("dailyView.fxml")));
             dataPane.getChildren().setAll(node);
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
     
     //SortedBy Split Menu month methods
