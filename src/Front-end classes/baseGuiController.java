@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -55,7 +56,9 @@ public class baseGuiController implements Initializable {
     private monthlyViewController mView;
     @FXML
     private dailyViewController dView;
-
+    
+    //
+    
     @FXML
     private TextField searchBar;
 
@@ -73,8 +76,9 @@ public class baseGuiController implements Initializable {
 
     //Modified by Carlos Rodriguez
     List<String> words = this.queries.allStationsNames();
-
-
+    private String sortBy, selectedMonth, selectedStation, selectedYear = "";
+    //
+    
     public void expSearch(ActionEvent event) throws Exception {
         list.getItems().clear();
         list.getItems().addAll(searchList(searchBar.getText(),words));
@@ -107,7 +111,7 @@ public class baseGuiController implements Initializable {
         dView = new dailyViewController();
         //
         list.getItems().addAll(words);
-
+        //this.stationName_Display.setContent(list);
         scroller.setContent(list);
     }
 
@@ -115,34 +119,6 @@ public class baseGuiController implements Initializable {
         stationController = new StationController();
         mapController = new MapController();
         station_SearchBar = new TextField();
-        station_SearchBar.setText("test");
-        
-        /**
-         * @author: Carlos Rodriguez
-         * In a method (for a cleaner version)
-         * - Would prolly need a variable as selectedCurrentStation
-         *  (whole name as LAWRENCE MUNICIPAL AIRPORT, not LAWRENCE ONLY)
-         * - Get that station and pass it.
-         * - getDate() for dailyViewController to get Date form datePicker
-         * - update visual aspects
-         * - Null aRep object if no report was found (best to set N/A all textfields)
-        DailyReport aRep = queries.getSpecificDailyReport("LAWRENCE MUNICIPAL AIRPORT", dView.getDate());
-        dView.setAvgWindDisplay(aRep.getDailyAverageWindSpeed());
-        dView.setMaxWindDisplay(aRep.getDailyMaxWindSpeed());
-        dView.setPrecipitationDisplay(aRep.getDailyPrecipitation()); */
-        
-        /**
-         * In a method (for a cleaner version) as well
-         * - Would prolly need a variable as selectedCurrentStation
-         *  (whole name as LAWRENCE MUNICIPAL AIRPORT, not LAWRENCE ONLY)
-         * - Get that station and pass it along with month name and year.
-         * - update visual aspects 
-         * - Null aRep object if no report was found (best to set N/A all textfields)
-        MonthlyReport aRep = queries.getSpecificMonthlyReport("HYANNIS MUNICIPAL AIRPORT", "DECEMBER", "2021");
-        mView.setAvgTempDisplay(aRep.getmonthlymonthlyAvgTemp());
-        mView.setMaxTempDisplay(aRep.getmonthlymonthlyMaxTemp());
-        mView.setMinTempDisplay(aRep.getmonthlymonthlyMinTemp());
-        mView.setPrecipitationDisplay(aRep.getmonthlymonthlyTotalPrecipitation());*/
     }
 
     public void swapColorModes(ActionEvent event){
@@ -154,6 +130,7 @@ public class baseGuiController implements Initializable {
            setDarkMode();
        }
     }
+    
     public void setDarkMode(){
         parentPane.getStylesheets().add("css/darkMode.css");
         nightMode_Toggle.setText("Light Mode");
@@ -164,9 +141,66 @@ public class baseGuiController implements Initializable {
     }
 
     public void stationSelected(ActionEvent event) throws Exception{
-        String station = ((RadioButton) event.getSource()).getText();
-        System.out.println(station);
-        expSet(station);
+        selectedStation = ((RadioButton) event.getSource()).getText();
+        List<String> fullStationName = searchList(selectedStation, words);
+        this.station_Name.setText(fullStationName.get(0));
+        expSet(selectedStation);
     }
-
+    
+    //Search Report button
+    public void searchReport(ActionEvent evt) {
+    	if(!this.selectedMonth.equals("") && !this.selectedStation.equals("")) {
+    		if(this.sortBy.equals("MONTHLY")) {
+    			if(!this.selectedYear.equals("")) {
+    				MonthlyReport aRep = queries.getSpecificMonthlyReport(this.selectedStation, this.selectedMonth, this.selectedYear);
+        	        if(aRep == null) {
+        	        	Alert notFound = new Alert(AlertType.INFORMATION);
+        	    		notFound.setContentText("No report found for given date.");
+        	        }
+        	        else {
+        	        	mView.setAvgTempDisplay(aRep.getmonthlymonthlyAvgTemp());
+            	        mView.setMaxTempDisplay(aRep.getmonthlymonthlyMaxTemp());
+            	        mView.setMinTempDisplay(aRep.getmonthlymonthlyMinTemp());
+            	        mView.setPrecipitationDisplay(aRep.getmonthlymonthlyTotalPrecipitation());
+        	        }
+    			}
+    		}
+    		if(this.sortBy.equals("DAILY")) {
+    			DailyReport aRep = queries.getSpecificDailyReport(this.selectedStation, dView.getDate());
+    			 if(aRep == null) {
+     	        	Alert notFound = new Alert(AlertType.INFORMATION);
+     	    		notFound.setContentText("No report found for given date.");
+     	        }
+    			else {
+    				dView.setAvgWindDisplay(aRep.getDailyAverageWindSpeed());
+        	        dView.setMaxWindDisplay(aRep.getDailyMaxWindSpeed());
+        	        dView.setPrecipitationDisplay(aRep.getDailyPrecipitation());
+    			}
+    		}
+    	}
+    	else {
+    		Alert notFound = new Alert(AlertType.WARNING);
+    		notFound.setContentText("Report can't be found.\nPlease check the criteria entered!");
+    	}
+    }
+    
+    //SortBy Split Menu search for methods
+    public void searchMonthly() {this.sortBy = "MONTHLY";}
+    public void searchDaily() {this.sortBy = "DAILY";}
+    
+    //SortedBy Split Menu month methods
+    public void setMonthJan() {this.selectedMonth = "JANUARY";}
+    public void setMonthFeb() {this.selectedMonth = "FEBRUARY";}
+    public void setMonthMar() {this.selectedMonth = "MARCH";}
+    public void setMonthApr() {this.selectedMonth = "APRIL";}
+    public void setMonthMay() {this.selectedMonth = "MAY";}
+    public void setMonthJun() {this.selectedMonth = "JUNE";}
+    public void setMonthJul() {this.selectedMonth = "JULY";}
+    public void setMonthAug() {this.selectedMonth = "AUGUST";}
+    public void setMonthSep() {this.selectedMonth = "SEPTEMBER";}
+    public void setMonthOct() {this.selectedMonth = "OCTOBER";}
+    public void setMonthNov() {this.selectedMonth = "NOVEMBER";}
+    public void setMonthDec() {this.selectedMonth = "DECEMBER";}
+    
+    
 }
