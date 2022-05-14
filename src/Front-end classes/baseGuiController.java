@@ -77,8 +77,8 @@ public class baseGuiController implements Initializable {
     //Modified by Carlos Rodriguez
     List<String> words = this.queries.allStationsNames();
     private String sortBy, selectedMonth, selectedStation, selectedYear = "";
-    //
-    
+
+    //yuliia
     public void expSearch(ActionEvent event) throws Exception {
         list.getItems().clear();
         list.getItems().addAll(searchList(searchBar.getText(),words));

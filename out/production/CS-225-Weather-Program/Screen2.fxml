@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="350.0" maxWidth="427.0" minHeight="350.0" minWidth="427.0" prefHeight="350.0" prefWidth="427.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="175.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello World 2!" />
+   </children>
+</Pane>
