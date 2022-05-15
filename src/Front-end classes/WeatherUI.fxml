@@ -3,7 +3,6 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
@@ -23,7 +22,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="parentPane" prefHeight="652.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGuiController">
+<VBox fx:id="parentPane" prefHeight="652.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGuiController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="737.0" prefWidth="1112.0" VBox.vgrow="ALWAYS">
          <children>
@@ -69,7 +68,16 @@
                         <Font name="Nirmala UI" size="18.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="unit_DropDown" layoutX="78.0" layoutY="80.0" prefWidth="150.0" />
+                  <SplitMenuButton fx:id="unit_Menu" layoutX="78.0" layoutY="76.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="96.0" text="Unit">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <items>
+                        <MenuItem fx:id="sortBy_Month11" mnemonicParsing="false" text="Fahrenheit" />
+                        <MenuItem fx:id="sortBy_Date11" mnemonicParsing="false" text="Kelvin" />
+                        <MenuItem fx:id="sortBy_Month111" mnemonicParsing="false" text="Celsius" />
+                     </items>
+                  </SplitMenuButton>
                </children>
             </Group>
             <ToggleButton fx:id="nightMode_Toggle" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#swapColorModes" text="Night Mode" />
@@ -229,6 +237,20 @@
             <Label layoutX="314.0" layoutY="234.0" text="Daily Reports" />
             <Button layoutX="31.0" layoutY="563.0" mnemonicParsing="false" onAction="#searchMonthlyReports" text="Search Monthly Reports" />
             <Button layoutX="287.0" layoutY="563.0" mnemonicParsing="false" onAction="#searchDailyReports" text="Search Daily Reports" />
+            <Label fx:id="sorted_Label1" layoutX="21.0" layoutY="198.0" text="Selected Year:">
+               <font>
+                  <Font name="Nirmala UI" size="19.0" />
+               </font>
+            </Label>
+            <SplitMenuButton fx:id="year_Menu" layoutX="141.0" layoutY="197.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="96.0" text="Year">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <items>
+                  <MenuItem fx:id="year2021" mnemonicParsing="false" onAction="#setYear2021" text="2021" />
+                  <MenuItem fx:id="year2022" mnemonicParsing="false" onAction="#setYear2022" text="2022" />
+               </items>
+            </SplitMenuButton>
          </children>
     </AnchorPane>
   </children>
