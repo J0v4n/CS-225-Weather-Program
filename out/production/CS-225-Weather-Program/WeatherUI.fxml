@@ -22,13 +22,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="parentPane" prefHeight="652.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGuiController">
+<VBox fx:id="parentPane" prefHeight="652.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGuiController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="652.0" prefWidth="968.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="737.0" prefWidth="1112.0" VBox.vgrow="ALWAYS">
          <children>
             <Group layoutX="1.0" layoutY="38.0">
                <children>
-                  <Label fx:id="sorted_Label" layoutX="24.0" layoutY="172.0" text="Selected Month:">
+                  <Label fx:id="sorted_Label" layoutX="24.0" layoutY="124.0" text="Selected Month:">
                      <font>
                         <Font name="Nirmala UI" size="19.0" />
                      </font>
@@ -38,21 +38,7 @@
                         <Font name="Nirmala UI" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="sortBy_Label" layoutX="24.0" layoutY="114.0" text="Sort By:">
-                     <font>
-                        <Font name="Nirmala UI" size="19.0" />
-                     </font>
-                  </Label>
-                  <SplitMenuButton fx:id="sortBy_DropDown" layoutX="99.0" layoutY="116.0" mnemonicParsing="false" text="Sort By">
-                     <items>
-                        <MenuItem id="showMonth" fx:id="sortBy_Month" mnemonicParsing="false" onAction="#searchMonthly" text="Month" />
-                        <MenuItem fx:id="sortBy_Date" mnemonicParsing="false" onAction="#searchDaily" text="Date" />
-                     </items>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </SplitMenuButton>
-                  <SplitMenuButton fx:id="sortedBy_DropDown" layoutX="165.0" layoutY="171.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="96.0" text="Month">
+                  <SplitMenuButton fx:id="sortedBy_DropDown" layoutX="163.0" layoutY="123.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="96.0" text="Month">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -81,7 +67,7 @@
                         <Font size="14.0" />
                      </font>
                   </SplitMenuButton>
-                  <Separator fx:id="separator_Dash" layoutX="13.0" layoutY="157.0" prefHeight="9.0" prefWidth="266.0" />
+                  <Separator fx:id="separator_Dash" layoutX="13.0" layoutY="115.0" prefHeight="9.0" prefWidth="266.0" />
                   <Label fx:id="static_StationLabel" layoutX="24.0" layoutY="14.0" text="Station" textFill="#d7d7d7">
                      <font>
                         <Font name="Nirmala UI" size="15.0" />
@@ -130,58 +116,127 @@
                   <RadioButton alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="258.0" layoutY="174.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#stationSelected" styleClass="station-button" text="WORCESTER" toggleGroup="$station" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dataPane" layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="460.0">
-               <children>
-                  <Line endX="211.0" layoutX="136.0" layoutY="55.0" startX="-115.5" />
-                  <Label layoutX="20.0" layoutY="20.0" text="Selected Date">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <DatePicker fx:id="dailyDateSelector" layoutX="126.0" layoutY="18.0" promptText="Select a Date" />
-                  <VBox layoutX="20.0" layoutY="81.0" prefHeight="200.0" prefWidth="422.0" style="-fx-background-color: white;">
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green;">
-                           <children>
-                              <Label text="Average Wind Speed: " textFill="WHITE">
-                                 <font>
-                                    <Font size="33.0" />
-                                 </font>
-                              </Label>
-                              <TextArea fx:id="avgWindDisplay" prefHeight="38.0" prefWidth="91.0" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: orange;">
-                           <children>
-                              <Label text="Maximum Wind Speed:" textFill="WHITE">
-                                 <font>
-                                    <Font size="31.0" />
-                                 </font>
-                              </Label>
-                              <TextArea fx:id="maxWindDisplay" prefHeight="38.0" prefWidth="91.0" translateX="4.0" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: purple;">
-                           <children>
-                              <Label text="Precipitation: " textFill="WHITE">
-                                 <font>
-                                    <Font size="36.0" />
-                                 </font>
-                              </Label>
-                              <TextArea fx:id="precipitationDisplay" prefHeight="38.0" prefWidth="91.0" translateX="104.0" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
             <TextField fx:id="searchBar" layoutX="482.0" layoutY="401.0" onAction="#expSearch" prefHeight="25.0" prefWidth="480.0" />
             <ScrollPane fx:id="scroller" layoutX="482.0" layoutY="426.0" prefHeight="214.0" prefWidth="480.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="477.0" />
               </content>
             </ScrollPane>
-            <Button layoutX="174.0" layoutY="599.0" mnemonicParsing="false" onAction="#searchReport" text="Search Report" />
+            <DatePicker fx:id="dateSelector" layoutX="280.0" layoutY="162.0" prefHeight="30.0" prefWidth="188.0" />
+            <Line endX="16.0" endY="147.0" layoutX="203.0" layoutY="400.0" startX="16.0" startY="-145.0" />
+            <VBox layoutX="220.0" layoutY="263.0" prefHeight="201.0" prefWidth="258.0" style="-fx-background-color: white;">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green;">
+                     <children>
+                        <Label text="Average Wind Speed: " textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="avgWindDisplay" prefHeight="67.0" prefWidth="80.0" translateX="15.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: orange;">
+                     <children>
+                        <Label alignment="TOP_LEFT" prefHeight="32.0" prefWidth="181.0" text="Maximum Wind Speed:" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="maxWindDisplay" prefHeight="67.0" prefWidth="80.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: purple;">
+                     <children>
+                        <Label text="Precipitation: " textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="precipitationDisplayDaily" prefHeight="38.0" prefWidth="80.0" translateX="78.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox layoutX="6.0" layoutY="255.0" prefHeight="293.0" prefWidth="211.0" style="-fx-background-color: white;">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="130.0">
+                           <children>
+                              <Label text="Average" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Temperature" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <TextArea fx:id="avgTempDisplay" prefHeight="45.0" prefWidth="75.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: orange;">
+                     <children>
+                        <VBox prefHeight="73.0" prefWidth="130.0">
+                           <children>
+                              <Label text="Maximum" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Temperature" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <TextArea fx:id="maxTempDisplay" prefHeight="45.0" prefWidth="75.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: darkslateblue;">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="130.0">
+                           <children>
+                              <Label text="Minimum" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label text="temperature" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <TextArea fx:id="minTempDisplay" prefHeight="45.0" prefWidth="75.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="230.0" style="-fx-background-color: purple;">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="130.0">
+                           <children>
+                              <Label text="Precipitation" textFill="WHITE">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <TextArea fx:id="precipitationDisplayMonthly" prefHeight="45.0" prefWidth="75.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Label layoutX="58.0" layoutY="234.0" text="Monthly Reports" />
+            <Label layoutX="314.0" layoutY="234.0" text="Daily Reports" />
+            <Button layoutX="31.0" layoutY="563.0" mnemonicParsing="false" onAction="#searchMonthlyReports" text="Search Monthly Reports" />
+            <Button layoutX="287.0" layoutY="563.0" mnemonicParsing="false" onAction="#searchDailyReports" text="Search Daily Reports" />
          </children>
     </AnchorPane>
   </children>

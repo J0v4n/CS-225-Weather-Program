@@ -2,25 +2,19 @@
  * @author Alland Timas
  *This class controls the overall weatherUI
  */
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -29,10 +23,10 @@ import java.util.stream.Collectors;
 public class baseGuiController implements Initializable {
 	//Alland Timas create variable references to fxml components
     @FXML
-    private Label sorted_Label, unit_Label, sortBy_Label,static_StationLabel, station_Name;
+    private Label station_Name;
 
     @FXML
-    private SplitMenuButton sortBy_DropDown, sortedBy_DropDown, unit_DropDown;
+    private SplitMenuButton sortedBy_DropDown, unit_DropDown;
 
     @FXML
     private Separator separator_Dash;
@@ -61,12 +55,7 @@ public class baseGuiController implements Initializable {
 
     @FXML
     private StationController stationController;
-    
-    @FXML
-    private monthlyViewController mView;
-    
-    @FXML
-    private dailyViewController dView;
+
     //
     //alland timas
     @FXML
@@ -76,10 +65,10 @@ public class baseGuiController implements Initializable {
     private ScrollPane scroller;
 
     @FXML
-    private AnchorPane dailyView, monthlyView;
+    private DatePicker dateSelector;
 
     @FXML
-    private DatePicker dateSelector;
+    private TextArea averageTempDisplay, maxTempDisplay, MinTempDisplay, precipitationDisplayMonthly, avgWindDisplay, maxWindDisplay, precipitationDisplayDaily;
 
     ListView<String> list = new ListView<>();
 
@@ -123,7 +112,6 @@ public class baseGuiController implements Initializable {
         stationController = new StationController();
         mapController = new MapController();
         //Modified by Carlos Rodriguez
-        mView = new monthlyViewController(this.queries.allAvailableYears());
 
         //
         list.getItems().addAll(words);
@@ -131,22 +119,12 @@ public class baseGuiController implements Initializable {
         scroller.setContent(list);
 
 
-        try {
-            monthlyView.getChildren().setAll((Node)FXMLLoader.load(getClass().getResource("monthlyView.fxml")));
-            dailyView.getChildren().setAll((Node)FXMLLoader.load(getClass().getResource("dailyView.fxml")));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     public baseGuiController(){
         stationController = new StationController();
         mapController = new MapController();
         station_SearchBar = new TextField();
-        mView = new monthlyViewController(this.queries.allAvailableYears());
-        dView = new dailyViewController();
         dateSelector = new DatePicker();
     }
   //Created by alland timas, uses darkMode.css to swap between the light mode and dark mode.
@@ -175,53 +153,16 @@ public class baseGuiController implements Initializable {
         this.station_Name.setText(fullStationName.get(0));
         expSet(selectedStation);
     }
-    
-    //Search Report button
-    public void searchReport(ActionEvent evt) {
-    		/*if(!selectedStation.isEmpty()) {
-        		System.out.println(selectedStation);
-        		if(this.sortBy.equals("MONTHLY")) {
-        			//Report object goes here
-        			System.out.println(this.mView.getMonth());
-        				this.mView.setAvgTempDisplay(-1.0);
-        				this.mView.setMaxTempDisplay(-1.0);
-        				this.mView.setMinTempDisplay(-1.0);
-        				this.mView.setPrecipitationDisplay(-1.0);
-        				
-        			
-        			
-        		}
-        		if(this.sortBy.equals("DAILY")) {
-        			System.out.println("daily");
-        		}
-        	}*/
 
-        System.out.println(dateSelector.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
-        dView.setPrecipitationDisplay(10.0);
-    }
     
     //SortBy Split Menu search for methods
     public void searchMonthly() throws IOException {
         this.sortBy = "MONTHLY";
-        /*try {
-            Node node;
-            node = FXMLLoader.load((getClass().getResource("monthlyView.fxml")));
-            dataPane.getChildren().setAll(node);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
     public void searchDaily(ActionEvent event) {
         this.sortBy = "DAILY";
-        /*try {
-        	Node node;
-            node = FXMLLoader.load((getClass().getResource("dailyView.fxml")));
-            dataPane.getChildren().setAll(node);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
     
     //SortedBy Split Menu month methods
@@ -237,6 +178,14 @@ public class baseGuiController implements Initializable {
     public void setMonthOct() {this.selectedMonth = "OCTOBER";}
     public void setMonthNov() {this.selectedMonth = "NOVEMBER";}
     public void setMonthDec() {this.selectedMonth = "DECEMBER";}
+
+    public void searchMonthlyReports(){
+
+    }
+
+    public void searchDailyReports(){
+
+    }
     
     
 }
