@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="CS-225-Weather-Program:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b154b5bd-3dc4-4f6f-af27-b866fe1c06df" name="Changes" comment="Changes">
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/WeatherUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/WeatherUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/WeatherUIMonthly.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/baseGuiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/baseGuiController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/monthlyView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/monthlyView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Front-end classes/WeatherUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Front-end classes/WeatherUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/css/darkMode.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/css/darkMode.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/dailyView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/dailyView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Front-end classes/baseGuiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Front-end classes/baseGuiController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +44,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Front-end classes" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -117,5 +125,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

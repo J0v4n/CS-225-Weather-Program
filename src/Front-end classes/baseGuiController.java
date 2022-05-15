@@ -272,8 +272,8 @@ public class baseGuiController implements Initializable {
     }
     
     public void searchMonthlyReports(){
-    	if(this.selectedMonth.isBlank() && this.selectedStation.isBlank()
-    			&& this.selectedYear.isBlank()) {
+    	if(this.selectedMonth.isEmpty() && this.selectedStation.isEmpty()
+    			&& this.selectedYear.isEmpty()) {
     		Alert warning = new Alert(AlertType.INFORMATION);
 			warning.setContentText("Change your input, missing information");
 			warning.show();
