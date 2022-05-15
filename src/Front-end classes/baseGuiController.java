@@ -73,6 +73,8 @@ public class baseGuiController implements Initializable {
 
     @FXML
     private ScrollPane scroller;
+    
+    private TemperatureConverter converter;
 
     @FXML
     private DatePicker dateSelector;
@@ -87,7 +89,7 @@ public class baseGuiController implements Initializable {
     TemperatureConverter tempConverter = new TemperatureConverter();
     
     //used to verify what the current unit would be
-    String currentUnit;    
+    private String currentUnit;    
     /**
      * @author: Carlos Rodriguez
      * Global reference of type Queries */
@@ -128,6 +130,8 @@ public class baseGuiController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         stationController = new StationController();
         mapController = new MapController();
+        this.converter = new TemperatureConverter();
+        this.currentUnit = "";
         //Modified by Carlos Rodriguez
 
         //
@@ -137,114 +141,6 @@ public class baseGuiController implements Initializable {
 
         //modified by Justin Lamberson
         //default temp type is set
-        resetTempType();
-        temperatureBoxInitialization();
-        //yearsInitialized();
-
-        /**
-        //Adds an action that auto converts the temperature to the unit
-        unit_DropDown.setOnAction((event -> {
-            String conversion = getTempType();
-            if(currentUnit.equals("FAHRENHEIT")){
-                if(conversion.equals("KELVIN")){
-                    Double minTemp = Double.parseDouble(minTempDisplay.getText());
-                    Double maxTemp = Double.parseDouble(maxTempDisplay.getText());
-                    Double avgTemp = Double.parseDouble(avgTempDisplay.getText());
-
-                    minTemp = tempConverter.fahrenheitToKelvin(minTemp);
-                    maxTemp = tempConverter.fahrenheitToKelvin(maxTemp);
-                    avgTemp = tempConverter.fahrenheitToKelvin(avgTemp);
-
-                    setAvgTempDisplay(avgTemp);
-                    setMaxTempDisplay(maxTemp);
-                    setMinTempDisplay(minTemp);
-
-                    currentUnit = getTempType();
-                    unit_DropDown.getSelectionModel().selectNext();
-
-
-                } else if(conversion.equals("CELSIUS")){
-                    Double minTemp = Double.parseDouble(minTempDisplay.getText());
-                    Double maxTemp = Double.parseDouble(maxTempDisplay.getText());
-                    Double avgTemp = Double.parseDouble(avgTempDisplay.getText());
-
-                    minTemp = tempConverter.fahrenheitToCelsius(minTemp);
-                    maxTemp = tempConverter.fahrenheitToCelsius(maxTemp);
-                    avgTemp = tempConverter.fahrenheitToCelsius(avgTemp);
-
-                    setAvgTempDisplay(avgTemp);
-                    setMaxTempDisplay(maxTemp);
-                    setMinTempDisplay(minTemp);
-
-                    currentUnit = getTempType();
-                    unit_DropDown.getSelectionModel().selectLast();
-
-
-                }
-            } else if(currentUnit.equals("KELVIN")){
-                if(conversion.equals("FAHRENHEIT")){
-                    Double minTemp = Double.parseDouble(minTempDisplay.getText());
-                    Double maxTemp = Double.parseDouble(maxTempDisplay.getText());
-                    Double avgTemp = Double.parseDouble(avgTempDisplay.getText());
-
-                    minTemp = tempConverter.kelvinToFahrenheit(minTemp);
-                    maxTemp = tempConverter.kelvinToFahrenheit(maxTemp);
-                    avgTemp = tempConverter.kelvinToFahrenheit(avgTemp);
-
-                    setAvgTempDisplay(avgTemp);
-                    setMaxTempDisplay(maxTemp);
-                    setMinTempDisplay(minTemp);
-
-                    currentUnit = getTempType();
-                } else if(conversion.equals("CELSIUS")){
-                    Double minTemp = Double.parseDouble(minTempDisplay.getText());
-                    Double maxTemp = Double.parseDouble(maxTempDisplay.getText());
-                    Double avgTemp = Double.parseDouble(avgTempDisplay.getText());
-
-                    minTemp = tempConverter.kelvinToCelsius(minTemp);
-                    maxTemp = tempConverter.kelvinToCelsius(maxTemp);
-                    avgTemp = tempConverter.kelvinToCelsius(avgTemp);
-
-                    setAvgTempDisplay(avgTemp);
-                    setMaxTempDisplay(maxTemp);
-                    setMinTempDisplay(minTemp);
-
-                    currentUnit = getTempType();
-                }
-            } else if(currentUnit.equals("CELSIUS")){
-                if(conversion.equals("FAHRENHEIT")){
-                    Double minTemp = Double.parseDouble(minTempDisplay.getText());
-                    Double maxTemp = Double.parseDouble(maxTempDisplay.getText());
-                    Double avgTemp = Double.parseDouble(avgTempDisplay.getText());
-
-                    minTemp = tempConverter.celsiusToFahrenheit(minTemp);
-                    maxTemp = tempConverter.celsiusToFahrenheit(maxTemp);
-                    avgTemp = tempConverter.celsiusToFahrenheit(avgTemp);
-
-                    setAvgTempDisplay(avgTemp);
-                    setMaxTempDisplay(maxTemp);
-                    setMinTempDisplay(minTemp);
-
-                    currentUnit = getTempType();
-                } else if(conversion.equals("KELVIN")){
-                    Double minTemp = Double.parseDouble(minTempDisplay.getText());
-                    Double maxTemp = Double.parseDouble(maxTempDisplay.getText());
-                    Double avgTemp = Double.parseDouble(avgTempDisplay.getText());
-
-                    minTemp = tempConverter.celsiusToKelvin(minTemp);
-                    maxTemp = tempConverter.celsiusToKelvin(maxTemp);
-                    avgTemp = tempConverter.celsiusToKelvin(avgTemp);
-
-                    setAvgTempDisplay(avgTemp);
-                    setMaxTempDisplay(maxTemp);
-                    setMinTempDisplay(minTemp);
-
-                    currentUnit = getTempType();
-                }
-            }
-
-        }) );
-*/
     }
 
 
@@ -253,6 +149,21 @@ public class baseGuiController implements Initializable {
         mapController = new MapController();
         station_SearchBar = new TextField();
         dateSelector = new DatePicker();
+        
+        this.avgTempDisplay = new TextArea();
+        this.avgTempDisplay.setEditable(false);
+        this.maxTempDisplay = new TextArea();
+        this.maxTempDisplay.setEditable(false); 
+        this.minTempDisplay = new TextArea();
+        this.minTempDisplay.setEditable(false); 
+        this.precipitationDisplayMonthly = new TextArea();
+        this.precipitationDisplayMonthly.setEditable(false); 
+        this.avgWindDisplay = new TextArea();
+        this.avgWindDisplay.setEditable(false); 
+        this.maxWindDisplay = new TextArea();
+        this.maxWindDisplay.setEditable(false);
+        this.precipitationDisplayDaily = new TextArea();
+        this.precipitationDisplayDaily.setEditable(false);
     }
   //Created by alland timas, uses darkMode.css to swap between the light mode and dark mode.
     public void swapColorModes(ActionEvent event){
@@ -301,6 +212,64 @@ public class baseGuiController implements Initializable {
     
     @FXML
     public void setYear2022() {this.selectedYear = "2022";}
+    
+    //Temp setters
+    public void setKelvin() {
+    	String foundAvg = this.avgTempDisplay.getText();
+    	String foundMaxTemp = this.maxTempDisplay.getText();
+    	String foundMinTemp = this.minTempDisplay.getText();
+    	if(!foundAvg.isEmpty() && !foundMaxTemp.isEmpty() && !foundMinTemp.isEmpty()) {
+    		if(this.currentUnit.isEmpty() || this.currentUnit.equals("Fahrenheit")) {
+        		this.avgTempDisplay.setText("" + this.converter.fahrenheitToKelvin(Double.parseDouble(foundAvg)));
+        		this.maxTempDisplay.setText("" + this.converter.fahrenheitToKelvin(Double.parseDouble(foundMaxTemp)));
+        		this.minTempDisplay.setText("" + this.converter.fahrenheitToKelvin(Double.parseDouble(foundMinTemp)));
+        	}
+    		if(this.currentUnit.equals("Celsius")) {
+    			this.avgTempDisplay.setText("" + this.converter.celsiusToKelvin(Double.parseDouble(foundAvg)));
+        		this.maxTempDisplay.setText("" + this.converter.celsiusToKelvin(Double.parseDouble(foundMaxTemp)));
+        		this.minTempDisplay.setText("" + this.converter.celsiusToKelvin(Double.parseDouble(foundMinTemp)));
+        	}
+    	}
+    	this.currentUnit = "Kelvin";
+    }
+    
+    public void setCelsius() {
+    	String foundAvg = this.avgTempDisplay.getText();
+    	String foundMaxTemp = this.maxTempDisplay.getText();
+    	String foundMinTemp = this.minTempDisplay.getText();
+    	if(!foundAvg.isEmpty() && !foundMaxTemp.isEmpty() && !foundMinTemp.isEmpty()) {
+    		if(this.currentUnit.equals("Fahrenheit")) {
+        		this.avgTempDisplay.setText("" + this.converter.fahrenheitToCelsius(Double.parseDouble(foundAvg)));
+        		this.maxTempDisplay.setText("" + this.converter.fahrenheitToCelsius(Double.parseDouble(foundMaxTemp)));
+        		this.minTempDisplay.setText("" + this.converter.fahrenheitToCelsius(Double.parseDouble(foundMinTemp)));
+        	}
+    		if(this.currentUnit.equals("Kelvin")) {
+    			this.avgTempDisplay.setText("" + this.converter.kelvinToCelsius(Double.parseDouble(foundAvg)));
+        		this.maxTempDisplay.setText("" + this.converter.kelvinToCelsius(Double.parseDouble(foundMaxTemp)));
+        		this.minTempDisplay.setText("" + this.converter.kelvinToCelsius(Double.parseDouble(foundMinTemp)));
+        	}
+    	}
+    	this.currentUnit = "Celsius";
+    }
+    
+    public void setFahrenheit() {
+    	String foundAvg = this.avgTempDisplay.getText();
+    	String foundMaxTemp = this.maxTempDisplay.getText();
+    	String foundMinTemp = this.minTempDisplay.getText();
+    	if(!foundAvg.isEmpty() && !foundMaxTemp.isEmpty() && !foundMinTemp.isEmpty()) {
+    		if(this.currentUnit.equals("Celsius")) {
+        		this.avgTempDisplay.setText("" + this.converter.celsiusToFahrenheit(Double.parseDouble(foundAvg)));
+        		this.maxTempDisplay.setText("" + this.converter.celsiusToFahrenheit(Double.parseDouble(foundMaxTemp)));
+        		this.minTempDisplay.setText("" + this.converter.celsiusToFahrenheit(Double.parseDouble(foundMinTemp)));
+        	}
+    		if(this.currentUnit.equals("Kelvin")) {
+    			this.avgTempDisplay.setText("" + this.converter.kelvinToFahrenheit(Double.parseDouble(foundAvg)));
+        		this.maxTempDisplay.setText("" + this.converter.kelvinToFahrenheit(Double.parseDouble(foundMaxTemp)));
+        		this.minTempDisplay.setText("" + this.converter.kelvinToFahrenheit(Double.parseDouble(foundMinTemp)));
+        	}
+    	}
+    	this.currentUnit = "Fahrenheit";
+    }
     
     public void searchMonthlyReports(){
     	if(this.selectedMonth.isBlank() && this.selectedStation.isBlank()
@@ -358,11 +327,6 @@ public class baseGuiController implements Initializable {
 		}
     }
     
-  //used when a new data set is called for conversion purposes
-    public void resetTempType(){
-        currentUnit = "FAHRENHEIT";
-    }
-    
     //Used to set all of the displays for monthly and daily views
     public void setAvgTempDisplay(Double avgTemp){
     	this.avgTempDisplay.setText("");
@@ -397,26 +361,6 @@ public class baseGuiController implements Initializable {
     public void setMaxWindDisplay(Double maxWind){
         maxWindDisplay.setText("");
         maxWindDisplay.setText(Double.toString(maxWind));
-    }
-
-    //Used to add all temperature types to the choice box
-    private void temperatureBoxInitialization(){
-        String list[] = {"Fahrenheit", "Kelvin", "Celsius"};
-        for(int i = 0; i < list.length; i++){
-            unit_Menu.getItems().set(i, new MenuItem(list[i]));
-        }
-    }
-    
-    private void yearsInitialized() {
-    	String[] allYears = {"2021", "2022"};
-    	for(int i = 0; i < allYears.length; i++){
-            year_Menu.getItems().set(i, new MenuItem(allYears[i]));
-        }
-    }
-
-    //used to return the temp type for conversion
-    private String getTempType(){
-        return currentUnit;
     }
 
     //Used to get the formatted date from the date picker
