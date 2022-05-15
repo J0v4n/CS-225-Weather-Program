@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b154b5bd-3dc4-4f6f-af27-b866fe1c06df" name="Changes" comment="Changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/baseGuiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/baseGuiController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/monthlyView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-225-Weather-Program/monthlyView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Front-end classes/WeatherUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Front-end classes/WeatherUI.fxml" afterDir="false" />
