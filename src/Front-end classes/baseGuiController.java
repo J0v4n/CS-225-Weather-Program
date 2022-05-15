@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -29,10 +30,16 @@ public class baseGuiController implements Initializable {
     private SplitMenuButton sortedBy_DropDown;
 
     @FXML
-    private ChoiceBox unit_DropDown;
+    private SplitMenuButton unit_Menu, year_Menu;
 
     @FXML
     private Separator separator_Dash;
+    
+    @FXML
+    private MenuItem year2021;
+    
+    @FXML
+    private MenuItem year2022;
 
     @FXML
     private ScrollPane stationName_Display;
@@ -78,10 +85,9 @@ public class baseGuiController implements Initializable {
     private boolean isLightMode = true;
 
     TemperatureConverter tempConverter = new TemperatureConverter();
-
-    //used to verify what the current unit would be
-    String currentUnit;
     
+    //used to verify what the current unit would be
+    String currentUnit;    
     /**
      * @author: Carlos Rodriguez
      * Global reference of type Queries */
@@ -89,8 +95,11 @@ public class baseGuiController implements Initializable {
 
     //Modified by Carlos Rodriguez
     List<String> words = this.queries.allStationsNames();
-    private String sortBy, selectedMonth, selectedStation, selectedYear = "";
+    private String selectedMonth, selectedStation = "";
+    private String selectedYear = "";
 
+    //Methods from stationController added by Jovan
+    
     //yuliia
     public void expSearch(ActionEvent event) throws Exception {
         list.getItems().clear();
@@ -130,7 +139,9 @@ public class baseGuiController implements Initializable {
         //default temp type is set
         resetTempType();
         temperatureBoxInitialization();
+        //yearsInitialized();
 
+        /**
         //Adds an action that auto converts the temperature to the unit
         unit_DropDown.setOnAction((event -> {
             String conversion = getTempType();
@@ -149,6 +160,7 @@ public class baseGuiController implements Initializable {
                     setMinTempDisplay(minTemp);
 
                     currentUnit = getTempType();
+                    unit_DropDown.getSelectionModel().selectNext();
 
 
                 } else if(conversion.equals("CELSIUS")){
@@ -165,6 +177,7 @@ public class baseGuiController implements Initializable {
                     setMinTempDisplay(minTemp);
 
                     currentUnit = getTempType();
+                    unit_DropDown.getSelectionModel().selectLast();
 
 
                 }
@@ -231,10 +244,9 @@ public class baseGuiController implements Initializable {
             }
 
         }) );
-
-
-
+*/
     }
+
 
     public baseGuiController(){
         stationController = new StationController();
@@ -266,20 +278,10 @@ public class baseGuiController implements Initializable {
         selectedStation = ((RadioButton) event.getSource()).getText();
         List<String> fullStationName = searchList(selectedStation, words);
         this.station_Name.setText(fullStationName.get(0));
+        selectedStation = fullStationName.get(0);
         expSet(selectedStation);
     }
-
-    
-    //SortBy Split Menu search for methods
-    public void searchMonthly() throws IOException {
-        this.sortBy = "MONTHLY";
-
-    }
-    public void searchDaily(ActionEvent event) {
-        this.sortBy = "DAILY";
-
-    }
-    
+ 
     //SortedBy Split Menu month methods
     public void setMonthJan() {this.selectedMonth = "JANUARY";}
     public void setMonthFeb() {this.selectedMonth = "FEBRUARY";}
@@ -293,26 +295,78 @@ public class baseGuiController implements Initializable {
     public void setMonthOct() {this.selectedMonth = "OCTOBER";}
     public void setMonthNov() {this.selectedMonth = "NOVEMBER";}
     public void setMonthDec() {this.selectedMonth = "DECEMBER";}
-
+    
+    @FXML
+    public void setYear2021() {this.selectedYear = "2021";}
+    
+    @FXML
+    public void setYear2022() {this.selectedYear = "2022";}
+    
     public void searchMonthlyReports(){
-
+    	if(this.selectedMonth.isBlank() && this.selectedStation.isBlank()
+    			&& this.selectedYear.isBlank()) {
+    		Alert warning = new Alert(AlertType.INFORMATION);
+			warning.setContentText("Change your input, missing information");
+			warning.show();
+    	}
+    	else {
+    		MonthlyReport aRep = this.queries.getSpecificMonthlyReport(selectedStation, selectedMonth, selectedYear);
+    		if(aRep == null) {
+    			Alert warning = new Alert(AlertType.INFORMATION);
+    			warning.setContentText("No report matched given criteria.");
+    			warning.show();
+    		}
+    		else {
+    			setAvgTempDisplay(aRep.getmonthlymonthlyAvgTemp());
+    			setMaxTempDisplay(aRep.getmonthlymonthlyMaxTemp());
+    			setMinTempDisplay(aRep.getmonthlymonthlyMinTemp());
+    			setPrecipitationDisplayMonthly(aRep.getmonthlymonthlyTotalPrecipitation());
+    		}
+    	}
     }
 
     public void searchDailyReports(){
-
+    	String[] givenDate = dateSelector.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")).split("/");
+    	if(givenDate[0].charAt(0) == '0') {
+    		String anotherDate[] = givenDate[0].split("0");
+    		for(int i=0; i<anotherDate.length; i++) {
+    			givenDate[0] = anotherDate[i];
+    		}
+    	}
+    	if(givenDate[1].charAt(0) == '0') {
+    		String anotherDate[] = givenDate[1].split("0");
+    		for(int i=0; i<anotherDate.length; i++) {
+    			givenDate[1] = anotherDate[i];
+    		}
+    	}
+    	String depured = "";
+    	for(int i=0; i<givenDate.length-1;i++) {
+    		depured = depured + givenDate[i] +"/";
+    	}
+    	depured = depured.concat(givenDate[givenDate.length - 1]);
+    
+    	DailyReport mRep = this.queries.getSpecificDailyReport(selectedStation, depured);
+		if(mRep == null) {
+			Alert warning = new Alert(AlertType.INFORMATION);
+			warning.setContentText("No report matching, change your input.");
+			warning.show();
+		}
+		else {
+			setAvgWindDisplay(mRep.getDailyAverageWindSpeed());
+			setPrecipitationDisplayDaily(mRep.getDailyPrecipitation());
+			setMaxWindDisplay(mRep.getDailyMaxWindSpeed());
+		}
     }
-
-    //used when a new data set is called for conversion purposes
+    
+  //used when a new data set is called for conversion purposes
     public void resetTempType(){
         currentUnit = "FAHRENHEIT";
-        unit_DropDown.getSelectionModel().selectFirst();
     }
-
-
+    
     //Used to set all of the displays for monthly and daily views
     public void setAvgTempDisplay(Double avgTemp){
-        avgTempDisplay.setText("");
-        avgTempDisplay.setText(Double.toString(avgTemp));
+    	this.avgTempDisplay.setText("");
+        this.avgTempDisplay.setText(Double.toString(avgTemp));
     }
 
     public void setMaxTempDisplay(Double maxTemp){
@@ -321,8 +375,8 @@ public class baseGuiController implements Initializable {
     }
 
     public void setMinTempDisplay(Double minTemp){
-        minTempDisplay.setText("");
-        minTempDisplay.setText(Double.toString(minTemp));
+        this.minTempDisplay.setText("");
+        this.minTempDisplay.setText(Double.toString(minTemp));
     }
 
     public void setPrecipitationDisplayMonthly(Double precipitation){
@@ -349,13 +403,20 @@ public class baseGuiController implements Initializable {
     private void temperatureBoxInitialization(){
         String list[] = {"Fahrenheit", "Kelvin", "Celsius"};
         for(int i = 0; i < list.length; i++){
-            unit_DropDown.getItems().add(list[i]);
+            unit_Menu.getItems().set(i, new MenuItem(list[i]));
+        }
+    }
+    
+    private void yearsInitialized() {
+    	String[] allYears = {"2021", "2022"};
+    	for(int i = 0; i < allYears.length; i++){
+            year_Menu.getItems().set(i, new MenuItem(allYears[i]));
         }
     }
 
     //used to return the temp type for conversion
     private String getTempType(){
-        return unit_DropDown.getSelectionModel().getSelectedItem().toString().toUpperCase();
+        return currentUnit;
     }
 
     //Used to get the formatted date from the date picker
@@ -364,7 +425,5 @@ public class baseGuiController implements Initializable {
         return dateSelector.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
     }
 
-
-    
     
 }
