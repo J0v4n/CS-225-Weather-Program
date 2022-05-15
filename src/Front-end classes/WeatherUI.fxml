@@ -73,9 +73,9 @@
                         <Font size="14.0" />
                      </font>
                      <items>
-                        <MenuItem fx:id="sortBy_Month11" mnemonicParsing="false" text="Fahrenheit" />
-                        <MenuItem fx:id="sortBy_Date11" mnemonicParsing="false" text="Kelvin" />
-                        <MenuItem fx:id="sortBy_Month111" mnemonicParsing="false" text="Celsius" />
+                        <MenuItem fx:id="sortBy_Month11" mnemonicParsing="false" onAction="#setFahrenheit" text="Fahrenheit" />
+                        <MenuItem fx:id="sortBy_Date11" mnemonicParsing="false" onAction="#setKelvin" text="Kelvin" />
+                        <MenuItem fx:id="sortBy_Month111" mnemonicParsing="false" onAction="#setCelsius" text="Celsius" />
                      </items>
                   </SplitMenuButton>
                </children>
